@@ -1,0 +1,5 @@
+.header {
+    background-color: var(--gray_6);
+    border-bottom: 2px solid var(--gray_1);
+    height: 60px;
+}
