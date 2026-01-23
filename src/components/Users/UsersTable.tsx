@@ -5,7 +5,7 @@ import type { User } from '../../data/users'
 type UsersTableProps = {
   users: User[]
   onEdit: (user: User) => void
-  onDelete: (users: User[], userId: number) => void
+  onDelete: (userId: number) => void
 }
 
 const UsersTable = ({users, onEdit, onDelete}: UsersTableProps) => (

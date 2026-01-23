@@ -5,10 +5,10 @@ type UserRowProps = {
   users: User[]
   user: User
   onEdit: (user: User) => void
-  onDelete: (users: User[], userId: number) => void
+  onDelete: (userId: number) => void
 }
 
-const UserRow = ({ users, user, onEdit, onDelete }: UserRowProps) => (
+const UserRow = ({ user, onEdit, onDelete }: UserRowProps) => (
   <tr className={styles.row}>
     <td>
       <span className={styles.id}>#{user.id}</span>
@@ -41,7 +41,7 @@ const UserRow = ({ users, user, onEdit, onDelete }: UserRowProps) => (
 
       <button 
         className={`${styles.actionBtn} ${styles.danger}`}
-        onClick={() => onDelete(users, user.id)}
+        onClick={() => onDelete(user.id)}
       >
         <img className={styles.icon} src="/logo.png" alt="" />
         Delete

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useCallback } from 'react'
 import { useOutletContext } from "react-router-dom";
 import styles from '../../pages/users/Users.module.css'
 import UsersHeader from '../../components/Users/UsersHeader'
@@ -14,89 +14,84 @@ const Users = () => {
   const { useLocalForage } = useOutletContext<MainLayoutContext>();
 
   const [allUsers, setAllUsers] = useLocalForage<User[]>('all-users', mockUsers)
-
   const [corrRole, setCorrRole] = useLocalForage<RoleControlsProps['role']>('users-role', 'all')
   const [corrStatus, setCorrStatus] = useLocalForage<StatusControlsProps['status']>('users-status', 'all')
-  const [corrSort, setCorrSort] = useLocalForage<SortControlsProps['sortBy']>('users-sort', 'all')
+  const [corrSort, setCorrSort] = useLocalForage<SortControlsProps['sortBy']>('users-sort', 'name_asc')
 
-  const filteredUsers = useMemo(() => {
-    let result = allUsers.filter(p => {
-      const roleMatch =
-        corrRole === 'all' || p.role === corrRole;
-
-      const statusMatch =
-        corrStatus === 'all' || p.status === corrStatus;
-
-      return roleMatch && statusMatch;
-    });
-
-    if(corrSort === 'name_asc') {
-      result = [...result].sort((a, b) => a.name.localeCompare(b.name, 'en'));
-    }
-
-    if (corrSort === 'name_desc') {
-      result = [...result].sort((a, b) => b.name.localeCompare(a.name, 'en'))
-    }
-
-    if (corrSort === 'date_asc') {
-      result = [...result].sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
-    }
-
-    if (corrSort === 'date_desc') {
-      result = [...result].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-    }
-
-    return result;
-  }, [allUsers, corrRole, corrStatus, corrSort])
-
-  const [selectedUser, setSelectedUser] = useState<User | undefined>(undefined);
+  const [selectedUser, setSelectedUser] = useState<User | undefined>(undefined)
   const [userModalState, setUserModalState] = useState<boolean>(false)
 
-  function userModalClose() {
-    setUserModalState(false);
-    setSelectedUser(undefined);
-  }
+  const [currentPage, setCurrentPage] = useState(1)
+  const [visibleCount, setVisibleCount] = useState(10)
 
-  function userModalHandleSave(formUser: User) {
-    const userToSave = formUser;
+  const filteredUsers = useMemo(() => {
+    let result = allUsers.filter(u => {
+      const roleMatch = corrRole === 'all' || u.role === corrRole
+      const statusMatch = corrStatus === 'all' || u.status === corrStatus
+      return roleMatch && statusMatch
+    })
 
-    const updatedUsers = [...allUsers];
-
-    const userIndex = updatedUsers.findIndex(u => u.id === userToSave.id);
-
-    if (userIndex >= 0) {
-      updatedUsers[userIndex] = userToSave;
-    } else {
-      updatedUsers.push(userToSave);
+    switch (corrSort) {
+      case 'name_asc':
+        result.sort((a, b) => a.name.localeCompare(b.name, 'en'))
+        break
+      case 'name_desc':
+        result.sort((a, b) => b.name.localeCompare(a.name, 'en'))
+        break
+      case 'date_asc':
+        result.sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
+        break
+      case 'date_desc':
+        result.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+        break
     }
 
-    setAllUsers(updatedUsers);
+    return result
+  }, [allUsers, corrRole, corrStatus, corrSort])
 
-    userModalClose();
-  }
+  const totalPages = useMemo(() => Math.ceil(filteredUsers.length / visibleCount), [filteredUsers.length, visibleCount])
 
-  function userHandleDelete(users: User[], userId: number) {
-    const updatedUsers = users.filter((u) => userId !== u.id)
-    setAllUsers(updatedUsers);
-  }
+  const paginatedUsers = useMemo(() => {
+    const start = (currentPage - 1) * visibleCount
+    const end = currentPage * visibleCount
+    return filteredUsers.slice(start, end)
+  }, [filteredUsers, currentPage, visibleCount])
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [visibleCount, setVisibleCount] = useState(10);
+  const userModalClose = useCallback(() => {
+    setUserModalState(false)
+    setSelectedUser(undefined)
+  }, [])
 
-  const totalPages = Math.ceil(filteredUsers.length / visibleCount);
+  const userModalHandleSave = useCallback((formUser: User) => {
+    setAllUsers(prev => {
+      const userIndex = prev.findIndex(u => u.id === formUser.id)
+      if (userIndex >= 0) {
+        const updated = [...prev]
+        updated[userIndex] = formUser
+        return updated
+      } else {
+        return [...prev, formUser]
+      }
+    })
+    userModalClose()
+  }, [userModalClose, setAllUsers])
 
-  const paginatedUsers = filteredUsers.slice(
-    (currentPage - 1) * visibleCount,
-    currentPage * visibleCount
-  )
+  const userHandleDelete = useCallback((userId: number) => {
+    setAllUsers(prev => prev.filter(u => u.id !== userId))
+  }, [setAllUsers])
 
-  function handleNextPage() {
-    if (currentPage < totalPages) setCurrentPage(currentPage + 1)
-  }
+  const handleNextPage = useCallback(() => {
+    setCurrentPage(prev => Math.min(prev + 1, totalPages))
+  }, [totalPages])
 
-  function handlePrevPage() {
-    if (currentPage > 1) setCurrentPage(currentPage - 1)
-  }
+  const handlePrevPage = useCallback(() => {
+    setCurrentPage(prev => Math.max(prev - 1, 1))
+  }, [])
+
+  const handleEditUser = useCallback((user?: User) => {
+    setSelectedUser(user)
+    setUserModalState(true)
+  }, [])
 
   return (
     <div className={styles.page}>
@@ -108,12 +103,12 @@ const Users = () => {
         onStatusChange={setCorrStatus}
         sortBy={corrSort}
         onSortChange={setCorrSort}
-        onEdit={(user?: User) => { setSelectedUser(user); setUserModalState(true); }}
+        onEdit={handleEditUser}
       />
       <UsersTable 
         users={paginatedUsers}
         onDelete={userHandleDelete}
-        onEdit={(user) => { setSelectedUser(user); setUserModalState(true); }}
+        onEdit={handleEditUser}
       />
       {userModalState && (
         <UserEditModal
