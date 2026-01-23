@@ -11,7 +11,6 @@ type HeaderProps = {
 }
 
 const Header = ({ corrUser, users, searchValue, setSearchValue }: HeaderProps) => {
-  
   const location = useLocation()
 
   const placeholder =
@@ -32,8 +31,8 @@ const Header = ({ corrUser, users, searchValue, setSearchValue }: HeaderProps) =
       return nameMatch
     })
 
-    return result
-  }, [setSearchValue])
+    return result.length > 0 ? result : []
+  }, [setSearchValue, searchValue])
 
   return (
     <header className={styles.header}>
@@ -46,20 +45,22 @@ const Header = ({ corrUser, users, searchValue, setSearchValue }: HeaderProps) =
             value={searchValue}
             onChange={e => setSearchValue(e.target.value)}
           />
-          <img src="/logo.png" alt="" />
+          <img src="/icons/search.svg" alt="" />
           
-          {searchMatch.length > 0 && searchValue.trim() && (
-            <div className={styles.searchResult}>
-              {searchMatch.map(u => (
+          {searchValue.length > 0 ? <div className={styles.searchResult}>
+            {searchMatch.length > 0 ? (
+              searchMatch.map(u => (
                 <div key={u.id} className={styles.searchItem}>
                   <div className={styles.searchAvatar}>
                     {u.name.charAt(0).toUpperCase()}
                   </div>
                   <div className={styles.searchName}>{u.name}</div>
                 </div>
-              ))}
-            </div>
-          )}
+              ))
+            ) : searchValue.trim() ? (
+              <div className={styles.noResults}>Not found</div>
+            ) : null}
+          </div> : null}
         </div>
 
 

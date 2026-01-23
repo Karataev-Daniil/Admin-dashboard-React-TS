@@ -35,7 +35,7 @@ const UserRow = ({ user, onEdit, onDelete }: UserRowProps) => (
         onClick={() => onEdit(user)}
         className={styles.actionBtn}
       >
-        <img className={styles.icon} src="/logo.png" alt="" />
+        <img className={styles.icon} src="/icons/edit.svg" alt="" />
         Edit
       </button>
 
@@ -43,7 +43,7 @@ const UserRow = ({ user, onEdit, onDelete }: UserRowProps) => (
         className={`${styles.actionBtn} ${styles.danger}`}
         onClick={() => onDelete(user.id)}
       >
-        <img className={styles.icon} src="/logo.png" alt="" />
+        <img className={styles.icon} src="/icons/delete.svg" alt="" />
         Delete
       </button>
     </td>

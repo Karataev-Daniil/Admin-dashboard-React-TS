@@ -1,5 +1,10 @@
-import styles from './Sidebar.module.css'
 import { NavLink } from 'react-router-dom'
+import styles from './Sidebar.module.css'
+
+import { ReactComponent as HomeIcon } from '../../assets/icons/home.svg'
+import { ReactComponent as UsersIcon } from '../../assets/icons/users.svg'
+import { ReactComponent as OrdersIcon } from '../../assets/icons/orders.svg'
+import { ReactComponent as ProductsIcon } from '../../assets/icons/products.svg'
 
 const Sidebar = () => (
   <nav className={styles.sidebar}>
@@ -15,7 +20,7 @@ const Sidebar = () => (
           `${styles.link} ${isActive ? styles.active : ''}`
         }
       >
-        <img className={styles.icon} src="/logo.png" alt="" />
+        <HomeIcon className={styles.icon} />
         Dashboard
       </NavLink>
 
@@ -25,7 +30,7 @@ const Sidebar = () => (
           `${styles.link} ${isActive ? styles.active : ''}`
         }
       >
-        <img className={styles.icon} src="/logo.png" alt="" />
+        <UsersIcon className={styles.icon} />
         Users
       </NavLink>
 
@@ -36,7 +41,7 @@ const Sidebar = () => (
         }
         onClick={(e) => e.preventDefault()}
       >
-        <img className={styles.icon} src="/logo.png" alt="" />
+        <OrdersIcon className={styles.icon} />
         Orders
       </NavLink>
 
@@ -46,7 +51,7 @@ const Sidebar = () => (
           `${styles.link} ${isActive ? styles.active : ''}`
         }
       >
-        <img className={styles.icon} src="/logo.png" alt="" />
+        <ProductsIcon className={styles.icon} />
         Products
       </NavLink>
     </div>
