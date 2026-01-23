@@ -1,3 +1,4 @@
+import {useMemo} from 'react'
 import styles from '../../pages/users/Users.module.css'
 
 type UsersPaginationProps = {
@@ -8,19 +9,24 @@ type UsersPaginationProps = {
   onPrevPage: () => void
 }
 const UsersPagination = ({onNextPage, totalPages, currentPage, setCorrentPage, onPrevPage}: UsersPaginationProps) => {
-  const pageNumbers = []
-  for (let i = 1; i <= totalPages; i++) {
-    pageNumbers.push(
-      <button
-        key={i}
-        onClick={() => setCorrentPage(i)}
-        disabled={i === currentPage}
-        className={`${styles.pageNumber} ${i === currentPage ? styles.active : ''}`}
-      >
-        {i}
-      </button>
-    )
-  }
+  const pageNumbers = useMemo(() => {
+    const pages = []
+
+    for (let i = 1; i <= totalPages; i++) {
+      pages.push(
+        <button
+          key={i}
+          onClick={() => setCorrentPage(i)}
+          disabled={i === currentPage}
+          className={`${styles.pageNumber} ${i === currentPage ? styles.active : ''}`}
+        >
+          {i}
+        </button>
+      )
+    }
+    return pages
+  }, [totalPages, currentPage])
+  
   return (
     <div className={styles.pagination}>
       <button

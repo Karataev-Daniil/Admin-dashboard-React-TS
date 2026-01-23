@@ -1,3 +1,4 @@
+/* page */
 .page {
     display: flex;
     flex-direction: column;
@@ -15,6 +16,7 @@
     margin-top: 8px;
 }
 
+/* controls */
 .controls {
     display: flex;
     justify-content: space-between;
@@ -63,6 +65,7 @@
     cursor: pointer;
 }
 
+/* table */
 .tableWrapper {
     background: var(--gray_6);
     border-radius: 4px 4px 0 0;
@@ -130,6 +133,7 @@
     color: var(--gray_-2);
 }
 
+/* badges */
 .badge {
     padding: 4px 8px;
     border-radius: 6px;
@@ -162,6 +166,7 @@
     color: var(--red_5);
 }
 
+/* actions */
 .actions {
     display: flex;
     align-items: center;
@@ -193,6 +198,7 @@
     color: var(--gray_-2);
 }
 
+/* modal */
 .modal {
     position: absolute;
     top: 50%;
@@ -235,6 +241,7 @@
     height: 20px;
 }
 
+/* form */
 .formGroup {
     display: grid;
     grid-template-columns: 120px 1fr;
@@ -287,6 +294,7 @@
     height: 16px;
 }
 
+/* modal actions */
 .modalActions {
     display: flex;
     justify-content: center;
@@ -326,6 +334,7 @@
     background-color: var(--gray_4);
 }
 
+/* pagination */
 .pagination {
     display: flex;
     align-items: center;

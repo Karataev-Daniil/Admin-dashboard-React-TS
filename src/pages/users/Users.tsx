@@ -5,15 +5,14 @@ import UsersHeader from '../../components/Users/UsersHeader'
 import UsersControls from '../../components/Users/UsersControls'
 import UsersTable from '../../components/Users/UsersTable'
 import UsersPagination from '../../components/Users/UsersPagination'
-import mockUsers from '../../data/users'
 import UserEditModal from '../../components/Users/UserEditModal'
 import type { RoleControlsProps, StatusControlsProps, SortControlsProps, User } from '../../data/users'
 import type { MainLayoutContext } from '../../layout/MainLayout'
 
 const Users = () => {
-  const { useLocalForage } = useOutletContext<MainLayoutContext>();
+  const { useLocalForage, allUsers, setAllUsers } = useOutletContext<MainLayoutContext>()
 
-  const [allUsers, setAllUsers] = useLocalForage<User[]>('all-users', mockUsers)
+
   const [corrRole, setCorrRole] = useLocalForage<RoleControlsProps['role']>('users-role', 'all')
   const [corrStatus, setCorrStatus] = useLocalForage<StatusControlsProps['status']>('users-status', 'all')
   const [corrSort, setCorrSort] = useLocalForage<SortControlsProps['sortBy']>('users-sort', 'name_asc')
@@ -49,7 +48,9 @@ const Users = () => {
     return result
   }, [allUsers, corrRole, corrStatus, corrSort])
 
-  const totalPages = useMemo(() => Math.ceil(filteredUsers.length / visibleCount), [filteredUsers.length, visibleCount])
+  const totalPages = useMemo(() => (
+    Math.ceil(filteredUsers.length / visibleCount)
+  ), [filteredUsers.length, visibleCount])
 
   const paginatedUsers = useMemo(() => {
     const start = (currentPage - 1) * visibleCount

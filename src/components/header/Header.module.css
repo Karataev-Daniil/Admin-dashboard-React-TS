@@ -3,3 +3,112 @@
     border-bottom: 2px solid var(--gray_1);
     height: 60px;
 }
+
+.inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    margin: 0 12px;
+}
+
+
+.search {
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 8px;
+}
+
+.search img {
+    position: absolute;
+
+    top: 6px;
+    left: 6px;
+    width: 18px;
+    height: 18px;
+}
+.search .result {
+    position: absolute;
+    max-height: 300px;
+    bottom: -100px;
+    background-color: var(--gray_6);
+}
+
+.searchInput {
+    height: 28px;
+    width: 300px;
+    background-color: var(--gray_4);
+    border: 1px solid var(--gray_2);
+    font-weight: 500;
+    padding: 0 8px 0 28px;
+    border-radius: 4px;
+}
+
+.searchResult {
+  position: absolute;
+  top: 36px; /* чуть ниже input */
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: var(--gray_6);
+  border: 1px solid var(--gray_2);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+.searchItem {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  gap: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.searchItem:hover {
+  background-color: var(--gray_5);
+}
+
+.searchAvatar {
+  width: 24px;
+  height: 24px;
+  background-color: var(--gray_1);
+  color: var(--blue_0);
+  font-weight: 700;
+  font-size: 12px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchName {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: var(--gray_1);
+    color: var(--blue_0);
+    font-weight: 700;
+    border-radius: 50%;
+}
+
+.username {
+    font-weight: 500;
+}
