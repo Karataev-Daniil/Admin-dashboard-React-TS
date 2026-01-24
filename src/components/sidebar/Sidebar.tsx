@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom'
 import styles from './Sidebar.module.css'
 
-import { ReactComponent as HomeIcon } from '../../assets/icons/home.svg'
-import { ReactComponent as UsersIcon } from '../../assets/icons/users.svg'
-import { ReactComponent as OrdersIcon } from '../../assets/icons/orders.svg'
-import { ReactComponent as ProductsIcon } from '../../assets/icons/products.svg'
+import DashboardIcon from '../../assets/icons/home.svg?react'
+import UsersIcon from '../../assets/icons/users.svg?react'
+import OrdersIcon from '../../assets/icons/orders.svg?react'
+import ProductsIcon from '../../assets/icons/products.svg?react'
 
 const Sidebar = () => (
   <nav className={styles.sidebar}>
@@ -20,8 +20,8 @@ const Sidebar = () => (
           `${styles.link} ${isActive ? styles.active : ''}`
         }
       >
-        <HomeIcon className={styles.icon} />
-        Dashboard
+        <DashboardIcon />
+        <span>Dashboard</span>
       </NavLink>
 
       <NavLink
@@ -30,19 +30,17 @@ const Sidebar = () => (
           `${styles.link} ${isActive ? styles.active : ''}`
         }
       >
-        <UsersIcon className={styles.icon} />
-        Users
+        <UsersIcon />
+        <span>Users</span>
       </NavLink>
 
       <NavLink
         to="/orders"
-        className={({ isActive }) =>
-          `${styles.link} ${isActive ? styles.active : ''} ${styles.disabled}`
-        }
+        className={`${styles.link} ${styles.disabled}`}
         onClick={(e) => e.preventDefault()}
       >
-        <OrdersIcon className={styles.icon} />
-        Orders
+        <OrdersIcon />
+        <span>Orders</span>
       </NavLink>
 
       <NavLink
@@ -51,8 +49,8 @@ const Sidebar = () => (
           `${styles.link} ${isActive ? styles.active : ''}`
         }
       >
-        <ProductsIcon className={styles.icon} />
-        Products
+        <ProductsIcon />
+        <span>Products</span>
       </NavLink>
     </div>
   </nav>

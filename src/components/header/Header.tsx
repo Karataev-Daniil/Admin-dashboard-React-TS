@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom'
 import { useMemo } from 'react'
 import styles from './Header.module.css'
+import SearchIcon from '../../assets/icons/search.svg?react'
 import type { User } from '../../data/users'
 
 type HeaderProps = {
@@ -45,7 +46,7 @@ const Header = ({ corrUser, users, searchValue, setSearchValue }: HeaderProps) =
             value={searchValue}
             onChange={e => setSearchValue(e.target.value)}
           />
-          <img src="/icons/search.svg" alt="" />
+          <SearchIcon />
           
           {searchValue.length > 0 ? <div className={styles.searchResult}>
             {searchMatch.length > 0 ? (

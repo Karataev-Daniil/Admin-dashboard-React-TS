@@ -40,14 +40,21 @@
 }
 
 .link {
-    display: block;
-    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 12px;
     padding: 10px 12px;
     text-decoration: none;
     font-weight: 500;
     color: var(--gray_6);
     margin: 0 12px;
     border-radius: 8px;
+    transition: background-color 0.1s ease-out, color 0.1s ease-out;
+}
+.link:hover {
+    color: var(--gray_4);
+    background-color: var(--blue_-2);
 }
 
 .link.active {
@@ -58,10 +65,7 @@
     cursor: not-allowed;
 }
 
-.link img {
-    margin-right: 8px;
-    vertical-align: middle;
+.link svg {
     width: 20px;
     height: auto;
-    color: var(--blue_0);
 }

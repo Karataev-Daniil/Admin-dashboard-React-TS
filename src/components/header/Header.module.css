@@ -17,22 +17,17 @@
     display: flex;
     align-items: center;
     position: relative;
+    color: var(--gray_-2);
     gap: 8px;
 }
 
-.search img {
+.search svg {
     position: absolute;
 
     top: 6px;
     left: 6px;
     width: 18px;
     height: 18px;
-}
-.search .result {
-    position: absolute;
-    max-height: 300px;
-    bottom: -100px;
-    background-color: var(--gray_6);
 }
 
 .searchInput {
@@ -45,9 +40,16 @@
     border-radius: 4px;
 }
 
+.search .result {
+    position: absolute;
+    max-height: 300px;
+    bottom: -100px;
+    background-color: var(--gray_6);
+}
+
 .searchResult {
   position: absolute;
-  top: 36px; /* чуть ниже input */
+  top: 36px;
   left: 0;
   width: 100%;
   max-height: 200px;
@@ -57,6 +59,9 @@
   border-radius: 4px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   z-index: 10;
+}
+.noResults {
+    padding: 4px 8px;
 }
 
 .searchItem {

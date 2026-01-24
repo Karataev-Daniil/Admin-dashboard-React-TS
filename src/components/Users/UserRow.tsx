@@ -1,4 +1,6 @@
 import styles from '../../pages/users/Users.module.css'
+import EditIcon from '../../assets/icons/edit.svg?react'
+import DeleteIcon from '../../assets/icons/delete.svg?react'
 import type { User } from '../../data/users'
 
 type UserRowProps = {
@@ -35,7 +37,7 @@ const UserRow = ({ user, onEdit, onDelete }: UserRowProps) => (
         onClick={() => onEdit(user)}
         className={styles.actionBtn}
       >
-        <img className={styles.icon} src="/icons/edit.svg" alt="" />
+        <EditIcon />
         Edit
       </button>
 
@@ -43,7 +45,7 @@ const UserRow = ({ user, onEdit, onDelete }: UserRowProps) => (
         className={`${styles.actionBtn} ${styles.danger}`}
         onClick={() => onDelete(user.id)}
       >
-        <img className={styles.icon} src="/icons/delete.svg" alt="" />
+        <DeleteIcon />
         Delete
       </button>
     </td>

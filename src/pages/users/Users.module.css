@@ -183,15 +183,17 @@
     background: transparent;
     color: var(--gray_-1);
     cursor: pointer;
+    transition: border-color 0.1s ease-out, color 0.1s ease-out;
 }
 
 .actionBtn:hover {
-    background: var(--gray_5);
+    color: var(--blue_0);
+    border-color: var(--blue_0);
 }
 
-.icon {
+.actionBtn svg {
     width: 16px;
-    height: auto;
+    height: 16px;
 }
 
 .separator {
