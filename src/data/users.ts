@@ -10,17 +10,17 @@ export type User = {
 
 export type RoleControlsProps = {
   role: 'all' | 'admin' | 'viewer' | 'manager'
-  onRoleChange: (newRole: 'all' | 'admin' | 'viewer' | 'manager') => void
+  onRoleChange: (newRole: RoleControlsProps['role']) => void
 }
 
 export type StatusControlsProps = {
   status: 'all' | 'active' | 'inactive'
-  onStatusChange: (newStatus: 'all' | 'active' | 'inactive') => void
+  onStatusChange: (newStatus: StatusControlsProps['status']) => void
 }
 
 export type SortControlsProps = {
   sortBy: 'all' | 'name_asc' | 'name_desc' | 'date_asc' | 'date_desc'
-  onSortChange: (newSortBy: 'all' | 'name_asc' | 'name_desc' | 'date_asc' | 'date_desc') => void
+  onSortChange: (newSortBy: SortControlsProps['sortBy']) => void
 }
 
 const mockUsers: User[] = [

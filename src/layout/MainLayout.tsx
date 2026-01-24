@@ -4,8 +4,10 @@ import localforage from "localforage";
 import Header from '../components/header/Header'
 import Sidebar from '../components/sidebar/Sidebar'
 import mockUsers from '../data/users'
+import mockProducts from '../data/products'
 import styles from './MainLayout.module.css'
-import type {User} from '../data/users'
+import type { User } from '../data/users'
+import type { Product } from '../data/products'
 
 import '../styles/globals.css'
 import '../styles/variables.css'
@@ -22,6 +24,8 @@ export type MainLayoutContext = {
   allUsers: User[]
   setAllUsers: React.Dispatch<React.SetStateAction<User[]>>
   searchValue: string
+  allProducts: Product[]
+  setAllProducts: React.Dispatch<React.SetStateAction<Product[]>>
 }
 
 function useLocalForage<T = string>(key: string, initialValue: T): UseLocalForageReturn<T> {
@@ -47,6 +51,8 @@ const MainLayout = () => {
   const [corrUser] = useState('admin')
   const [searchValue, setSearchValue] = useState('')
 
+  const [allProducts, setAllProducts] = useLocalForage<Product[]>('all-products', mockProducts)
+
   return (
     <div className={styles.layout}>
       <Sidebar />
@@ -65,7 +71,9 @@ const MainLayout = () => {
               useLocalForage,
               allUsers,
               setAllUsers,
-              searchValue
+              searchValue,
+              allProducts, 
+              setAllProducts 
             }}
           />
         </main>

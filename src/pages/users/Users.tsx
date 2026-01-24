@@ -12,7 +12,6 @@ import type { MainLayoutContext } from '../../layout/MainLayout'
 const Users = () => {
   const { useLocalForage, allUsers, setAllUsers } = useOutletContext<MainLayoutContext>()
 
-
   const [corrRole, setCorrRole] = useLocalForage<RoleControlsProps['role']>('users-role', 'all')
   const [corrStatus, setCorrStatus] = useLocalForage<StatusControlsProps['status']>('users-status', 'all')
   const [corrSort, setCorrSort] = useLocalForage<SortControlsProps['sortBy']>('users-sort', 'name_asc')
