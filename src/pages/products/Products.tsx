@@ -1,8 +1,9 @@
-import { useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { useOutletContext } from "react-router-dom";
 import ProductsHeader from "../../components/Products/ProductsHeader"
 import ProductsControls from "../../components/Products/ProductsControls"
 import ProductsTable from "../../components/Products/ProductsTable"
+import ProductsPagination from "../../components/Products/ProductsPagination"
 import styles from './Products.module.css'
 import type { CategoryProps, StockProps, DateAddProps, StatusProps, Product } from "../../data/products"
 import type { MainLayoutContext } from '../../layout/MainLayout'
@@ -14,6 +15,9 @@ const Products = () => {
   const [corrStock, setCorrStock] = useLocalForage<StockProps['stock']>('products-stock', 'all')
   const [corrDateAdd, setCorrDateAdd] = useLocalForage<DateAddProps['dateAdd']>('products-dateadd', 'all')
   const [corrStatus, setCorrStatus] = useLocalForage<StatusProps['status']>('products-status', 'all')
+
+  const [currentPage, setCurrentPage] = useState(1)
+  const [visibleCount, setVisibleCount] = useState(10)
 
   const filteredProducts = useMemo(() => {
     return allProducts.filter((p) => {
@@ -39,6 +43,24 @@ const Products = () => {
     });
   }, [allProducts, corrCategory, corrStock, corrDateAdd, corrStatus]);
 
+  const totalPages = useMemo(() => {
+    return Math.ceil(filteredProducts.length / visibleCount)
+  }, [filteredProducts.length, visibleCount])
+
+  const paginatedProduct = useMemo(() => {
+    const start = (currentPage - 1) * visibleCount
+    const end = currentPage * visibleCount
+    return filteredProducts.slice(start, end)
+  }, [filteredProducts, currentPage])
+
+  const handleNextPage = useCallback(() => {
+    setCurrentPage(prev => Math.min(prev + 1, totalPages))
+  }, [totalPages])
+
+  const handlePrevPage = useCallback(() => {
+    setCurrentPage(prev => Math.max(prev - 1, 1))
+  }, [])
+
   return (
     <div className={styles.page}>
       <ProductsHeader />
@@ -54,11 +76,18 @@ const Products = () => {
         onEdit={() => {}}
       />
       <ProductsTable 
-        Products={filteredProducts}
+        Products={paginatedProduct}
         onEdit={() => {}}
         onDelete={(productId: number) => {
           setAllProducts(prevProducts => prevProducts.filter(p => p.id !== productId))
         }}
+      />
+      <ProductsPagination 
+        onNextPage={handleNextPage}
+        totalPages={totalPages}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        onPrevPage={handlePrevPage}
       />
     </div>
   )
