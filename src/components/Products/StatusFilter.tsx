@@ -11,7 +11,7 @@ const StatusFilter = ({ status, onStatusChange }: StatusProps) => (
         >
             <option value="all">All</option>
             <option value="active">Active</option>
-            <option value="outOfStock">Out of Status</option>
+            <option value="outOfStock">Out of Stock</option>
             <option value="inactive">Inactive</option>
         </select>
     </label>

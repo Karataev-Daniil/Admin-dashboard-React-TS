@@ -1,4 +1,4 @@
-import { useMemo, useState, useCallback } from 'react'
+import { useMemo, useState } from 'react'
 import { useOutletContext } from "react-router-dom";
 import ProductsHeader from "../../components/Products/ProductsHeader"
 import ProductsControls from "../../components/Products/ProductsControls"
@@ -10,41 +10,34 @@ import type { MainLayoutContext } from '../../layout/MainLayout'
 const Products = () => {
   const { useLocalForage, allProducts, setAllProducts } = useOutletContext<MainLayoutContext>()
 
-  const [corrCategory, setCorrCategory] = useState<CategoryProps['category']>('all')
-  const [corrStock, setCorrStock] = useState<StockProps['stock']>('all')
-  const [corrDateAdd, setCorrDateAdd] = useState<DateAddProps['dateAdd']>('all')
-  const [corrStatus, setCorrStatus] = useState<StatusProps['status']>('all')
+  const [corrCategory, setCorrCategory] = useLocalForage<CategoryProps['category']>('products-category', 'all')
+  const [corrStock, setCorrStock] = useLocalForage<StockProps['stock']>('products-stock', 'all')
+  const [corrDateAdd, setCorrDateAdd] = useLocalForage<DateAddProps['dateAdd']>('products-dateadd', 'all')
+  const [corrStatus, setCorrStatus] = useLocalForage<StatusProps['status']>('products-status', 'all')
 
-const filteredProducts = useMemo(() => {
-  const now = new Date();
+  const filteredProducts = useMemo(() => {
+    return allProducts.filter((p) => {
+      const categoryMatch = corrCategory === 'all' || p.type === corrCategory;
+      const stockMatch = corrStock === 'all' 
+        || (corrStock === 'inStock' && p.stock > 0) 
+        || (corrStock === 'outOfStock' && p.stock === 0);
+      const statusMatch = corrStatus === 'all' || p.status === corrStatus;
 
-  return allProducts.filter((p) => {
-    const categoryMatch = corrCategory === 'all' || p.type === corrCategory;
-    const stockMatch = corrStock === 'all' || (corrStock === 'inStock' && p.stock > 0) || (corrStock === 'outOfStock' && p.stock === 0);
+      const now = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
-    let dateAddMatch = true;
-    if (corrDateAdd !== 'all') {
       const productDate = new Date(p.date);
-      const daysMap: Record<string, number> = {
-        last24hours: 1,
-        last7days: 7,
-        last30days: 30,
-      };
-      const daysAgo = daysMap[corrDateAdd];
-      if (daysAgo) {
-        const compareDate = new Date();
-        compareDate.setDate(now.getDate() - daysAgo);
-        dateAddMatch = productDate >= compareDate;
-      }
-    }
+      const diffDays = Math.floor((today.getTime() - productDate.getTime()) / (1000 * 60 * 60 * 24));
 
-    // Статус
-    const statusMatch = corrStatus === 'all' || p.status.toLowerCase() === corrStatus;
+      const dateMatch = corrDateAdd === 'all'
+        || (corrDateAdd === 'last24hours' && diffDays <= 1)
+        || (corrDateAdd === 'last7days' && diffDays <= 7)
+        || (corrDateAdd === 'last30days' && diffDays <= 30);
 
-    return categoryMatch && stockMatch && dateAddMatch && statusMatch;
-  });
-}, [allProducts, corrCategory, corrStock, corrDateAdd, corrStatus]);
 
+      return categoryMatch && stockMatch && statusMatch && dateMatch;
+    });
+  }, [allProducts, corrCategory, corrStock, corrDateAdd, corrStatus]);
 
   return (
     <div className={styles.page}>

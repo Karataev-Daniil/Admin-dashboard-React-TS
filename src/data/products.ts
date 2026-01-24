@@ -5,7 +5,7 @@ export type Product = {
   date: string;
   price: number;
   stock: number;
-  status: 'active' | 'outOfStock' | 'Inactive';
+  status: 'active' | 'outOfStock' | 'inactive';
 };
 
 export type CategoryProps = {
@@ -24,7 +24,7 @@ export type DateAddProps = {
 };
 
 export type StatusProps = {
-  status: 'all' | 'active' | 'outOfStock' | 'Inactive';
+  status: 'all' | 'active' | 'outOfStock' | 'inactive';
   onStatusChange: (status: StatusProps['status']) => void;
 };
 
@@ -43,7 +43,7 @@ const mockProduct: Product[] = [
   {id: 5643, name:"Nikon Z6 II", type:"Camera", date:"2026-01-10", price:1999, stock:6, status:"active"},
   {id: 2378, name:"Instant P9t Duo 7-in-1", type:"Home Appliances", date:"2026-01-15", price:89, stock:20, status:"active"},
   {id: 3451, name:"Philips Air Fryer", type:"Home Appliances", date:"2026-01-05", price:129, stock:15, status:"active"},
-  {id: 7561, name:"Apple MacBook Pro 15", type:"Laptops", date:"2026-01-22", price:2499, stock:10, status:"Inactive"},
+  {id: 7561, name:"Apple MacBook Pro 15", type:"Laptops", date:"2026-01-22", price:2499, stock:10, status:"inactive"},
   {id: 8912, name:"Microsoft Surface Pro 9", type:"Laptops", date:"2026-01-12", price:1399, stock:7, status:"active"},
   {id: 4657, name:"JBL Flip 8 Speaker", type:"Speakers", date:"2026-01-20", price:99, stock:50, status:"active"},
   {id: 3124, name:"Sony SRS-XB43", type:"Speakers", date:"2026-01-10", price:149, stock:22, status:"active"},
