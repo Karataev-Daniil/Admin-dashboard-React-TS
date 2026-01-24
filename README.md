@@ -37,16 +37,6 @@ The project simulates an admin panel for managing users, products, and orders in
 
 ---
 
-## Project Structure
-
-src/
-├── components/    # Reusable UI components
-├── pages/         # Application pages (Users, Products, etc.)
-├── layout/        # Dashboard layout components
-├── types/         # TypeScript types and interfaces
-├── utils/         # Helper functions
-└── App.tsx
-Purpose
 This project was created as a pet project to practice:
 
 Building an admin dashboard UI
