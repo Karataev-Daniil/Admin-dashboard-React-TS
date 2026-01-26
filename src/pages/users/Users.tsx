@@ -118,6 +118,7 @@ const Users = () => {
           user={selectedUser}
           onSave={userModalHandleSave}
           onClose={userModalClose}
+          currUserRole={currUser?.role}
         />
       )}
       <UsersPagination 
