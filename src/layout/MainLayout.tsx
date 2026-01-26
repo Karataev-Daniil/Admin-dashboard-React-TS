@@ -1,16 +1,17 @@
-import { Outlet } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { Outlet } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import localforage from "localforage";
-import Header from '../components/header/Header'
-import Sidebar from '../components/sidebar/Sidebar'
-import mockUsers from '../data/users'
-import mockProducts from '../data/products'
-import styles from './MainLayout.module.css'
-import type { User } from '../data/users'
-import type { Product } from '../data/products'
+import Header from '../components/header/Header';
+import Sidebar from '../components/sidebar/Sidebar';
+import LoginModal from '../components/modal/LoginModal';
+import mockUsers from '../data/users';
+import mockProducts from '../data/products';
+import styles from './MainLayout.module.css';
+import type { User } from '../data/users';
+import type { Product } from '../data/products';
 
-import '../styles/globals.css'
-import '../styles/variables.css'
+import '../styles/globals.css';
+import '../styles/variables.css';
 
 localforage.config({
   name: "admin-dashboard",
@@ -20,13 +21,13 @@ localforage.config({
 type UseLocalForageReturn<T> = [T, React.Dispatch<React.SetStateAction<T>>];
 
 export type MainLayoutContext = {
-  useLocalForage: <T = string>(key: string, initialValue: T) => UseLocalForageReturn<T>
-  allUsers: User[]
-  setAllUsers: React.Dispatch<React.SetStateAction<User[]>>
-  searchValue: string
-  allProducts: Product[]
-  setAllProducts: React.Dispatch<React.SetStateAction<Product[]>>
-}
+  useLocalForage: <T = string>(key: string, initialValue: T) => UseLocalForageReturn<T>;
+  allUsers: User[];
+  setAllUsers: React.Dispatch<React.SetStateAction<User[]>>;
+  searchValue: string;
+  allProducts: Product[];
+  setAllProducts: React.Dispatch<React.SetStateAction<Product[]>>;
+};
 
 function useLocalForage<T = string>(key: string, initialValue: T): UseLocalForageReturn<T> {
   const [state, setState] = useState<T>(initialValue);
@@ -47,11 +48,18 @@ function useLocalForage<T = string>(key: string, initialValue: T): UseLocalForag
 }
 
 const MainLayout = () => {
-  const [allUsers, setAllUsers] = useLocalForage<User[]>('all-users', mockUsers)
-  const [corrUser] = useState('admin')
-  const [searchValue, setSearchValue] = useState('')
+  const [allUsers, setAllUsers] = useLocalForage<User[]>('all-users', mockUsers);
+  const [allProducts, setAllProducts] = useLocalForage<Product[]>('all-products', mockProducts);
 
-  const [allProducts, setAllProducts] = useLocalForage<Product[]>('all-products', mockProducts)
+  const [currUser, setCurrUser] = useLocalForage<{ name: string; email: string; role: string } | null>('data-user', null);
+
+  const [searchValue, setSearchValue] = useState('');
+
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+
+  const openLogin = () => setIsLoginOpen(true);
+
+  const closeLogin = () => setIsLoginOpen(false);
 
   return (
     <div className={styles.layout}>
@@ -59,10 +67,17 @@ const MainLayout = () => {
 
       <div className={styles.content}>
         <Header
-          corrUser={corrUser}
+          currUser={currUser}
           users={allUsers}
           searchValue={searchValue}
           setSearchValue={setSearchValue}
+          openLogin={openLogin}
+        />
+
+        <LoginModal
+          setCurrUser={setCurrUser}
+          isOpen={isLoginOpen}
+          onClose={closeLogin}
         />
 
         <main className={styles.main}>
@@ -72,14 +87,14 @@ const MainLayout = () => {
               allUsers,
               setAllUsers,
               searchValue,
-              allProducts, 
-              setAllProducts 
+              allProducts,
+              setAllProducts,
             }}
           />
         </main>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MainLayout
+export default MainLayout;

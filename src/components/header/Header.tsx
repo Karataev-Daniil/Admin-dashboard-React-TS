@@ -1,39 +1,34 @@
-import { useLocation } from 'react-router-dom'
-import { useMemo } from 'react'
-import styles from './Header.module.css'
-import SearchIcon from '../../assets/icons/search.svg?react'
-import type { User } from '../../data/users'
+import { useLocation } from 'react-router-dom';
+import { useMemo } from 'react';
+import styles from './Header.module.css';
+import SearchIcon from '../../assets/icons/search.svg?react';
+import type { User } from '../../data/users';
 
 type HeaderProps = {
-  corrUser: string
-  users: User[]
-  searchValue: string
-  setSearchValue: React.Dispatch<React.SetStateAction<string>>
-}
+  openLogin: () => void;
+  currUser: { name: string; email: string } | null;
+  users: User[];
+  searchValue: string;
+  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+};
 
-const Header = ({ corrUser, users, searchValue, setSearchValue }: HeaderProps) => {
-  const location = useLocation()
+const Header = ({ openLogin, currUser, users, searchValue, setSearchValue }: HeaderProps) => {
+  const location = useLocation();
 
-  const placeholder =
-    location.pathname.startsWith('/users')
-      ? 'Search users...'
-      : location.pathname.startsWith('/products')
-      ? 'Search products...'
-      : location.pathname.startsWith('/orders')
-      ? 'Search orders...'
-      : 'Search...'
+  const placeholder = location.pathname.startsWith('/users')
+    ? 'Search users...'
+    : location.pathname.startsWith('/products')
+    ? 'Search products...'
+    : location.pathname.startsWith('/orders')
+    ? 'Search orders...'
+    : 'Search...';
 
   const searchMatch = useMemo(() => {
-    const qwery = searchValue.trim().toLowerCase()
+    const query = searchValue.trim().toLowerCase();
+    if (!query) return [];
 
-    let result = users.filter((u) => {
-      const nameMatch = u.name.trim().toLowerCase().includes(qwery)
-
-      return nameMatch
-    })
-
-    return result.length > 0 ? result : []
-  }, [setSearchValue, searchValue])
+    return users.filter(u => u.name.toLowerCase().includes(query));
+  }, [searchValue, users]);
 
   return (
     <header className={styles.header}>
@@ -47,35 +42,36 @@ const Header = ({ corrUser, users, searchValue, setSearchValue }: HeaderProps) =
             onChange={e => setSearchValue(e.target.value)}
           />
           <SearchIcon />
-          
-          {searchValue.length > 0 ? <div className={styles.searchResult}>
-            {searchMatch.length > 0 ? (
-              searchMatch.map(u => (
-                <div key={u.id} className={styles.searchItem}>
-                  <div className={styles.searchAvatar}>
-                    {u.name.charAt(0).toUpperCase()}
+
+          {searchValue.trim().length > 0 && (
+            <div className={styles.searchResult}>
+              {searchMatch.length > 0 ? (
+                searchMatch.map(u => (
+                  <div key={u.id} className={styles.searchItem}>
+                    <div className={styles.searchAvatar}>
+                      {u.name.charAt(0).toUpperCase()}
+                    </div>
+                    <div className={styles.searchName}>{u.name}</div>
                   </div>
-                  <div className={styles.searchName}>{u.name}</div>
-                </div>
-              ))
-            ) : searchValue.trim() ? (
-              <div className={styles.noResults}>Not found</div>
-            ) : null}
-          </div> : null}
+                ))
+              ) : (
+                <div className={styles.noResults}>Not found</div>
+              )}
+            </div>
+          )}
         </div>
 
-
-        <div className={styles.user}>
+        <div className={styles.user} onClick={openLogin}>
           <div className={styles.avatar}>
-            {corrUser.charAt(0).toUpperCase()}
+            {currUser ? currUser.name.charAt(0).toUpperCase() : '?'}
           </div>
           <div className={styles.username}>
-            {corrUser}
+            {currUser ? currUser.name : 'Guest'}
           </div>
         </div>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
