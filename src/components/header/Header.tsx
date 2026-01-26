@@ -3,16 +3,18 @@ import { useMemo } from 'react';
 import styles from './Header.module.css';
 import SearchIcon from '../../assets/icons/search.svg?react';
 import type { User } from '../../data/users';
+import type { Product } from '../../data/products';
 
 type HeaderProps = {
-  openLogin: () => void;
-  currUser: { name: string; email: string } | null;
-  users: User[];
-  searchValue: string;
-  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+  openLogin: () => void
+  currUser: { name: string; email: string } | null
+  users: User[]
+  searchValue: string
+  setSearchValue: React.Dispatch<React.SetStateAction<string>>
+  products: Product[]
 };
 
-const Header = ({ openLogin, currUser, users, searchValue, setSearchValue }: HeaderProps) => {
+const Header = ({ openLogin, currUser, users, searchValue, setSearchValue, products }: HeaderProps) => {
   const location = useLocation();
 
   const placeholder = location.pathname.startsWith('/users')
@@ -27,7 +29,20 @@ const Header = ({ openLogin, currUser, users, searchValue, setSearchValue }: Hea
     const query = searchValue.trim().toLowerCase();
     if (!query) return [];
 
-    return users.filter(u => u.name.toLowerCase().includes(query));
+    switch (true) {
+      case location.pathname.startsWith('/users'):
+        return users.filter(u =>
+          u.name.toLowerCase().includes(query)
+        );
+      
+      case location.pathname.startsWith('/products'):
+        return products.filter(p =>
+          p.name.toLowerCase().includes(query)
+        );
+      
+      default:
+        return [];
+    }
   }, [searchValue, users]);
 
   return (

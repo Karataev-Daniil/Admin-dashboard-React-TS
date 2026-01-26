@@ -70,6 +70,7 @@ const MainLayout = () => {
         <Header
           currUser={currUser}
           users={allUsers}
+          products={allProducts}
           searchValue={searchValue}
           setSearchValue={setSearchValue}
           openLogin={openLogin}
