@@ -27,6 +27,7 @@ export type MainLayoutContext = {
   searchValue: string;
   allProducts: Product[];
   setAllProducts: React.Dispatch<React.SetStateAction<Product[]>>;
+  currUser: { name: string; email: string; role: User['role'] | undefined } | null;
 };
 
 function useLocalForage<T = string>(key: string, initialValue: T): UseLocalForageReturn<T> {
@@ -89,6 +90,7 @@ const MainLayout = () => {
               searchValue,
               allProducts,
               setAllProducts,
+              currUser,
             }}
           />
         </main>

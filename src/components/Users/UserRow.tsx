@@ -8,48 +8,56 @@ type UserRowProps = {
   user: User
   onEdit: (user: User) => void
   onDelete: (userId: number) => void
+  currUserRole: User['role'] | undefined
 }
 
-const UserRow = ({ user, onEdit, onDelete }: UserRowProps) => (
-  <tr className={styles.row}>
-    <td>
-      <span className={styles.id}>#{user.id}</span>
-    </td>
-    <td>
-      <span className={styles.name}>{user.name}</span>
-    </td>
-    <td>
-      <span className={styles.email}>{user.email}</span>
-    </td>
-    <td>
-      <span className={`${styles.badge} ${styles[user.role]}`}>
-        {user.role}
-      </span>
-    </td>
-    <td>
-      <span className={`${styles.badge} ${styles[user.status]}`}>
-        {user.status}
-      </span>
-    </td>
+const UserRow = ({ user, onEdit, onDelete, currUserRole }: UserRowProps) => {
+  const isAdmin = currUserRole === 'admin';
+  const isManager = currUserRole === 'manager';
+  const isViewer = currUserRole === 'viewer';
 
-    <td className={styles.actions}>
-      <button 
-        onClick={() => onEdit(user)}
-        className={styles.actionBtn}
-      >
-        <EditIcon />
-        Edit
-      </button>
 
-      <button 
-        className={`${styles.actionBtn} ${styles.danger}`}
-        onClick={() => onDelete(user.id)}
-      >
-        <DeleteIcon />
-        Delete
-      </button>
-    </td>
-  </tr>
-)
+  return (
+    <tr className={styles.row}>
+      {!isViewer && <td>
+        <span className={styles.id}>#{user.id}</span>
+      </td>}
+      <td>
+        <span className={styles.name}>{user.name}</span>
+      </td>
+      {!isViewer && <td>
+        <span className={styles.email}>{user.email}</span>
+      </td>}
+      {isAdmin && <td>
+        <span className={`${styles.badge} ${styles[user.role]}`}>
+          {user.role}
+        </span>
+      </td>}
+      {!isViewer && <td>
+        <span className={`${styles.badge} ${styles[user.status]}`}>
+          {user.status}
+        </span>
+      </td>}
+
+      {!isViewer && <td className={styles.actions}>
+        <button 
+          onClick={() => onEdit(user)}
+          className={styles.actionBtn}
+        >
+          <EditIcon />
+          Edit
+        </button>
+
+        <button 
+          className={`${styles.actionBtn} ${styles.danger}`}
+          onClick={() => onDelete(user.id)}
+        >
+          <DeleteIcon />
+          Delete
+        </button>
+      </td>}
+    </tr>
+  )
+}
 
 export default UserRow

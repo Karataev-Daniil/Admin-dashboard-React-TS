@@ -12,30 +12,47 @@ type UsersControlsProps = {
   sortBy: SortControlsProps['sortBy']
   onSortChange: SortControlsProps['onSortChange']
   onEdit: (user?: User) => void
+  currUserRole: User['role'] | undefined
 }
-const UsersControls = ({role, onRoleChange, status, onStatusChange, sortBy, onSortChange, onEdit }: UsersControlsProps) => (
-  <div className={styles.controls}>
-    <div className={styles.filters}>
-      <RoleFilter 
-        role={role}
-        onRoleChange={onRoleChange}
-      />
-      <StatusFilter 
-        status={status}
-        onStatusChange={onStatusChange}
-      />
-      <SortFilter 
-        sortBy={sortBy}
-        onSortChange={onSortChange}
-      />
+const UsersControls = ({
+  role, 
+  onRoleChange, 
+  status, 
+  onStatusChange, 
+  sortBy, 
+  onSortChange, 
+  onEdit, 
+  currUserRole 
+}: UsersControlsProps) => {
+  const isAdmin = currUserRole === 'admin';
+  const isManager = currUserRole === 'manager';
+  const isViewer = currUserRole === 'viewer';
+
+  return (
+    <div className={styles.controls}>
+      <div className={styles.filters}>
+        {!isViewer && <RoleFilter 
+          role={role}
+          onRoleChange={onRoleChange}
+        />}
+        {!isViewer && <StatusFilter 
+          status={status}
+          onStatusChange={onStatusChange}
+        />}
+        <SortFilter 
+          sortBy={sortBy}
+          onSortChange={onSortChange}
+        />
+      </div>
+      {isAdmin && <button 
+        onClick={() => onEdit()}
+        className={styles.addButton}
+      >
+        Add User
+      </button>}
     </div>
-    <button 
-      onClick={() => onEdit()}
-      className={styles.addButton}
-    >
-      Add User
-    </button>
-  </div>
-)
+  )
+}
+
 
 export default UsersControls

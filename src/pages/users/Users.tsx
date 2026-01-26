@@ -10,7 +10,7 @@ import type { RoleControlsProps, StatusControlsProps, SortControlsProps, User } 
 import type { MainLayoutContext } from '../../layout/MainLayout'
 
 const Users = () => {
-  const { useLocalForage, allUsers, setAllUsers } = useOutletContext<MainLayoutContext>()
+  const { useLocalForage, allUsers, setAllUsers, currUser } = useOutletContext<MainLayoutContext>()
 
   const [corrRole, setCorrRole] = useLocalForage<RoleControlsProps['role']>('users-role', 'all')
   const [corrStatus, setCorrStatus] = useLocalForage<StatusControlsProps['status']>('users-status', 'all')
@@ -104,11 +104,13 @@ const Users = () => {
         sortBy={corrSort}
         onSortChange={setCorrSort}
         onEdit={handleEditUser}
+        currUserRole={currUser?.role}
       />
       <UsersTable 
         users={paginatedUsers}
         onDelete={userHandleDelete}
         onEdit={handleEditUser}
+        currUserRole={currUser?.role}
       />
       {userModalState && (
         <UserEditModal

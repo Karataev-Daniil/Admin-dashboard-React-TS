@@ -1,7 +1,7 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: var(--popup-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,12 +9,12 @@
 }
 
 .modal {
-  background: #ffffff;
+  position: relative;
+  background: var(--gray_6);
   border-radius: 8px;
   padding: 24px;
   width: 100%;
-  max-width: 380px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  max-width: 300px;
   animation: fadeIn 0.2s ease-out;
 }
 
@@ -34,33 +34,37 @@
   padding: 10px 12px;
   font-size: 14px;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--gray_2);
 }
 
 .input:focus {
   outline: none;
-  border-color: #3b82f6;
+  border-color: var(--blue_0);
 }
 
 .submit {
   margin-top: 8px;
   padding: 10px;
-  background: #3b82f6;
-  color: #ffffff;
+  background: var(--blue_0);
+  color: var(--gray_6);
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  transition: background 0.1s ease-in-out;
 }
 
 .submit:hover {
-  background: #2563eb;
+  background: var(--blue_1);
 }
 
 .close {
   margin-top: 12px;
   background: transparent;
   border: none;
-  color: #555;
+  color: var(--gray_0);
+  position: absolute;
+  top: 12px;
+  right: 12px;
   cursor: pointer;
   text-align: center;
 }

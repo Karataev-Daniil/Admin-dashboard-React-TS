@@ -86,7 +86,7 @@ function LoginModal({ setCurrUser, isOpen, onClose }: LoginModalProps) {
         </form>
 
         <button className={styles.close} onClick={handleClose}>
-          Close
+          <img src="/icons/close.svg" alt="Close" />
         </button>
       </div>
     </div>
