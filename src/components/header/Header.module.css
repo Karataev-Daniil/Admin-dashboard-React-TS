@@ -100,6 +100,16 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    cursor: pointer;
+}
+
+.user:hover .avatar {
+    background-color: var(--gray_2);
+    color: var(--blue_1);
+}
+
+.user:hover .username {
+    color: var(--blue_2);
 }
 
 .avatar {
@@ -112,8 +122,11 @@
     color: var(--blue_0);
     font-weight: 700;
     border-radius: 50%;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .username {
     font-weight: 500;
+    color: var(--blue_-4);
+    transition: color 0.3s ease;
 }

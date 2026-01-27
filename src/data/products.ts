@@ -1,7 +1,7 @@
 export type Product = {
   id: number;
   name: string;
-  type: string;
+  type?: 'Smartphones' | 'Laptops' | 'Tablets' | 'Accessories' | 'Headphones' | 'Wearables' | 'Camera' | 'Home Appliances' | 'Footwear' | 'Speakers' | 'Electronics' | 'Gaming';
   date: string;
   price: number;
   stock: number;

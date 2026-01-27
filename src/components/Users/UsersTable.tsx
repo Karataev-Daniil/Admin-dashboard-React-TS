@@ -10,21 +10,21 @@ type UsersTableProps = {
 }
 
 const UsersTable = ({ users, onEdit, onDelete, currUserRole }: UsersTableProps) => {
+  const canManageUsers = currUserRole === 'admin' || currUserRole === 'manager';
+
   const isAdmin = currUserRole === 'admin';
-  const isManager = currUserRole === 'manager';
-  const isViewer = currUserRole === 'viewer';
-  
+
   return (
     <div className={styles.tableWrapper}>
       <table className={styles.table}>
         <thead>
           <tr>
-            {!isViewer && <th>ID</th>}
+            {canManageUsers && <th>ID</th>}
             <th>Name</th>
-            {!isViewer && <th>Email</th>}
+            {canManageUsers && <th>Email</th>}
             {isAdmin && <th>Role</th>}
-            {!isViewer && <th>Status</th>}
-            {!isViewer && <th>Actions</th>}
+            {canManageUsers && <th>Status</th>}
+            {canManageUsers && <th>Actions</th>}
           </tr>
         </thead>
 
@@ -42,7 +42,7 @@ const UsersTable = ({ users, onEdit, onDelete, currUserRole }: UsersTableProps) 
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};
 
-export default UsersTable
+export default UsersTable;

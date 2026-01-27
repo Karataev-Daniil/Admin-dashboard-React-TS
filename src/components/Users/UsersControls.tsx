@@ -24,35 +24,42 @@ const UsersControls = ({
   onEdit, 
   currUserRole 
 }: UsersControlsProps) => {
+  const canManageUsers = currUserRole === 'admin' || currUserRole === 'manager';
   const isAdmin = currUserRole === 'admin';
-  const isManager = currUserRole === 'manager';
-  const isViewer = currUserRole === 'viewer';
 
   return (
     <div className={styles.controls}>
       <div className={styles.filters}>
-        {!isViewer && <RoleFilter 
-          role={role}
-          onRoleChange={onRoleChange}
-        />}
-        {!isViewer && <StatusFilter 
-          status={status}
-          onStatusChange={onStatusChange}
-        />}
+        {canManageUsers && (
+          <RoleFilter 
+            role={role}
+            onRoleChange={onRoleChange}
+          />
+        )}
+
+        {canManageUsers && (
+          <StatusFilter 
+            status={status}
+            onStatusChange={onStatusChange}
+          />
+        )}
+
         <SortFilter 
           sortBy={sortBy}
           onSortChange={onSortChange}
         />
       </div>
-      {isAdmin && <button 
-        onClick={() => onEdit()}
-        className={styles.addButton}
-      >
-        Add User
-      </button>}
+
+      {isAdmin && (
+        <button 
+          onClick={() => onEdit()}
+          className={styles.addButton}
+        >
+          Add User
+        </button>
+      )}
     </div>
-  )
-}
+  );
+};
 
-
-export default UsersControls
+export default UsersControls;

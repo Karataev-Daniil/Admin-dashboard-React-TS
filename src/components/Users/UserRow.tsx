@@ -12,52 +12,64 @@ type UserRowProps = {
 }
 
 const UserRow = ({ user, onEdit, onDelete, currUserRole }: UserRowProps) => {
+  const canManageUsers = currUserRole === 'admin' || currUserRole === 'manager';
   const isAdmin = currUserRole === 'admin';
-  const isManager = currUserRole === 'manager';
-  const isViewer = currUserRole === 'viewer';
-
 
   return (
     <tr className={styles.row}>
-      {!isViewer && <td>
-        <span className={styles.id}>#{user.id}</span>
-      </td>}
+      {canManageUsers && (
+        <td>
+          <span className={styles.id}>#{user.id}</span>
+        </td>
+      )}
+
       <td>
         <span className={styles.name}>{user.name}</span>
       </td>
-      {!isViewer && <td>
-        <span className={styles.email}>{user.email}</span>
-      </td>}
-      {isAdmin && <td>
-        <span className={`${styles.badge} ${styles[user.role]}`}>
-          {user.role}
-        </span>
-      </td>}
-      {!isViewer && <td>
-        <span className={`${styles.badge} ${styles[user.status]}`}>
-          {user.status}
-        </span>
-      </td>}
 
-      {!isViewer && <td className={styles.actions}>
-        <button 
-          onClick={() => onEdit(user)}
-          className={styles.actionBtn}
-        >
-          <EditIcon />
-          Edit
-        </button>
+      {canManageUsers && (
+        <td>
+          <span className={styles.email}>{user.email}</span>
+        </td>
+      )}
 
-        <button 
-          className={`${styles.actionBtn} ${styles.danger}`}
-          onClick={() => onDelete(user.id)}
-        >
-          <DeleteIcon />
-          Delete
-        </button>
-      </td>}
+      {isAdmin && (
+        <td>
+          <span className={`${styles.badge} ${styles[user.role]}`}>
+            {user.role}
+          </span>
+        </td>
+      )}
+
+      {canManageUsers && (
+        <td>
+          <span className={`${styles.badge} ${styles[user.status]}`}>
+            {user.status}
+          </span>
+        </td>
+      )}
+
+      {canManageUsers && (
+        <td className={styles.actions}>
+          <button
+            onClick={() => onEdit(user)}
+            className={styles.actionBtn}
+          >
+            <EditIcon />
+            Edit
+          </button>
+
+          <button
+            className={`${styles.actionBtn} ${styles.danger}`}
+            onClick={() => onDelete(user.id)}
+          >
+            <DeleteIcon />
+            Delete
+          </button>
+        </td>
+      )}
     </tr>
-  )
-}
+  );
+};
 
-export default UserRow
+export default UserRow;

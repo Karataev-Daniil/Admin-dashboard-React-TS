@@ -1,5 +1,6 @@
 import { useState, useEffect, type FormEvent } from "react";
 import styles from "./LoginModal.module.css";
+import CloseIcon from '../../assets/icons/close.svg?react'
 import mockUsers from "../../data/users";
 
 type LoginModalProps = {
@@ -86,7 +87,7 @@ function LoginModal({ setCurrUser, isOpen, onClose }: LoginModalProps) {
         </form>
 
         <button className={styles.close} onClick={handleClose}>
-          <img src="/icons/close.svg" alt="Close" />
+          <CloseIcon />
         </button>
       </div>
     </div>

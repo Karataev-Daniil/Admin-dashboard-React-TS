@@ -4,6 +4,7 @@ import StockFilter from './StockFilter'
 import DateAddFilter from './DateAddFilter'
 import StatusFilter from './StatusFilter'
 import type { CategoryProps, StockProps, DateAddProps, StatusProps, Product } from '../../data/products'
+import type { User } from '../../data/users'
 
 type ProductsControlsProps = {
     category: CategoryProps['category']
@@ -14,9 +15,22 @@ type ProductsControlsProps = {
     onDateAddChange: DateAddProps['onDateAddChange']
     status: StatusProps['status']
     onStatusChange: StatusProps['onStatusChange']
-    onEdit: (user?: Product) => void
+    onEdit: (product?: Product) => void
+    currUserRole: User['role'] | undefined
 }
-const ProductsControls = ({ category, onCategoryChange, stock, onStockChange, dateAdd, onDateAddChange, status, onStatusChange, onEdit }: ProductsControlsProps) => {
+const ProductsControls = ({ 
+    category, 
+    onCategoryChange, 
+    stock, 
+    onStockChange, 
+    dateAdd, 
+    onDateAddChange, 
+    status, 
+    onStatusChange, 
+    onEdit,
+    currUserRole
+}: ProductsControlsProps) => {
+    const canManageProducts = currUserRole === 'admin' || currUserRole === 'manager';
     return (
         <div className={styles.controls}>
             <div className={styles.filters}>
@@ -24,10 +38,10 @@ const ProductsControls = ({ category, onCategoryChange, stock, onStockChange, da
                     category={category} 
                     onCategoryChange={onCategoryChange}
                 />
-                <StockFilter 
+                {canManageProducts && <StockFilter 
                     stock={stock}
                     onStockChange={onStockChange}
-                />
+                />}
                 <DateAddFilter 
                     dateAdd={dateAdd}
                     onDateAddChange={onDateAddChange}
@@ -37,12 +51,12 @@ const ProductsControls = ({ category, onCategoryChange, stock, onStockChange, da
                     onStatusChange={onStatusChange}
                 />
             </div>
-            <button 
-
+            {canManageProducts && <button 
                 className={styles.addButton}
+                onClick={() => onEdit()}
             >
                 Add Product
-            </button>
+            </button>}
         </div>
     )
 }

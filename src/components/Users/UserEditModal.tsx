@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from '../../pages/users/Users.module.css';
+import CloseIcon from '../../assets/icons/close.svg?react'
 import type { User } from '../../data/users';
 
 type UserEditProps = {
@@ -59,7 +60,9 @@ const UserEditModal = ({
                 {isEditing ? 'Edit User' : 'Add User'}
             </h1>
 
-            <button onClick={onClose} className={styles.closeBtn}>×</button>
+            <button onClick={onClose} className={styles.closeBtn}>
+                <CloseIcon />
+            </button>
 
             <hr className={styles.divider} />
 
