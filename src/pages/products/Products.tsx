@@ -5,6 +5,7 @@ import ProductsControls from "../../components/Products/ProductsControls"
 import ProductsTable from "../../components/Products/ProductsTable"
 import ProductsPagination from "../../components/Products/ProductsPagination"
 import ProductEditModal from "../../components/Products/ProductEditModal"
+import ProductsSummary from '../../components/Products/ProductsSummary'
 import styles from './Products.module.css'
 import type { CategoryProps, StockProps, DateAddProps, StatusProps, Product } from "../../data/products"
 import type { MainLayoutContext } from '../../layout/MainLayout'
@@ -83,6 +84,9 @@ const Products = () => {
   return (
     <div className={styles.page}>
       <ProductsHeader />
+      <ProductsSummary
+        products={filteredProducts}
+      />
       <ProductsControls 
         category={currCategory}
         onCategoryChange={setCurrCategory}
