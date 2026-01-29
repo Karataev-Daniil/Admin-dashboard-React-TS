@@ -102,7 +102,7 @@ const Header = ({
         <div className={styles.search}>
           <div className={styles.searchInputWrapper}>
             <input
-              type="text"
+              type='text'
               className={styles.searchInput}
               placeholder={placeholder}
               value={searchValue}
@@ -111,7 +111,7 @@ const Header = ({
     
             {searchValue && (
               <button
-                type="button"
+                type='button'
                 className={styles.clearButton}
                 onClick={() => setSearchValue('')}
               >

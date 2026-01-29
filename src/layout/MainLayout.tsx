@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import localforage from "localforage";
+import localforage from 'localforage';
 import Header from '../components/header/Header';
 import Sidebar from '../components/sidebar/Sidebar';
 import LoginModal from '../components/modal/LoginModal';
@@ -16,8 +16,8 @@ import '../styles/globals.css';
 import '../styles/variables.css';
 
 localforage.config({
-  name: "admin-dashboard",
-  storeName: "dashboard",
+  name: 'admin-dashboard',
+  storeName: 'dashboard',
 });
 
 type UseLocalForageReturn<T> = [T, React.Dispatch<React.SetStateAction<T>>];

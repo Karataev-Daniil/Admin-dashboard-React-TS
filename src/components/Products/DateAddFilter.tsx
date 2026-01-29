@@ -9,10 +9,10 @@ const DateAddFilter = ({ dateAdd, onDateAddChange }: DateAddProps) => (
             value={dateAdd}
             onChange={e => onDateAddChange(e.target.value as DateAddProps['dateAdd'])}
         >
-            <option value="all">All</option>
-            <option value="last24hours">Last 24 hours</option>
-            <option value="last7days">Last 7 days</option>
-            <option value="last30days">Last 30 days</option>
+            <option value='all'>All</option>
+            <option value='last24hours'>Last 24 hours</option>
+            <option value='last7days'>Last 7 days</option>
+            <option value='last30days'>Last 30 days</option>
         </select>
     </label>
 )

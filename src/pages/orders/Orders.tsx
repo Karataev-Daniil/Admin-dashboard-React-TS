@@ -1,12 +1,12 @@
 import { useCallback, useMemo, useState } from 'react'
-import { useOutletContext } from "react-router-dom";
-import OrdersHeader from "../../components/Orders/OrdersHeader"
-import OrdersControls from "../../components/Orders/OrdersControls"
-import OrdersTable from "../../components/Orders/OrdersTable"
-import OrdersPagination from "../../components/Orders/OrdersPagination"
+import { useOutletContext } from 'react-router-dom';
+import OrdersHeader from '../../components/Orders/OrdersHeader'
+import OrdersControls from '../../components/Orders/OrdersControls'
+import OrdersTable from '../../components/Orders/OrdersTable'
+import OrdersPagination from '../../components/Orders/OrdersPagination'
 import OrdersSummary from '../../components/Orders/OrdersSummary'
 import styles from './Orders.module.css'
-import type { Order } from "../../data/orders"
+import type { Order } from '../../data/orders'
 import type { MainLayoutContext } from '../../layout/MainLayout'
 
 
@@ -15,7 +15,7 @@ const Orders = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [visibleCount, setVisibleCount] = useState(10)
 
-    const [currStatus, setCurrStatus] = useState<Order['status'] | 'all'>('all')
+    const [currStatus, setCurrStatus] = useLocalForage<Order['status'] | 'all'>('order-status', 'all')
 
     const filteredOrders = useMemo(() => {
         return allOrders.filter((p) => {
@@ -42,6 +42,32 @@ const Orders = () => {
         setCurrentPage(prev => Math.max(prev - 1, 1))
     }, [])
 
+    const [orderModalState, setOrderModalState] = useState<boolean>(false)
+    const [selectedOrder, setSelectedOrder] = useState<Order | undefined>(undefined)
+
+    const handleEditOrder = useCallback((order?: Order) => {
+        setSelectedOrder(order)
+        setOrderModalState(true)
+    }, [])
+
+    const orderModalClose = useCallback(() => {
+        setSelectedOrder(undefined)
+        setOrderModalState(false)
+    }, [])
+
+    const orderModalHandleSave = useCallback((formOrder: Order) => {
+        setAllOrders(prev => {
+            const findIndex = prev.findIndex(p => p.id === formOrder.id)
+            if (findIndex >= 0) {
+                const updated = [...prev]
+                updated[findIndex] = formOrder
+                return updated
+            } else {
+                return [...prev, formOrder]
+            }
+        })
+    }, [])
+
     return (
         <div className={styles.page}>
             <OrdersHeader />
@@ -58,6 +84,14 @@ const Orders = () => {
                 currUserRole={currUser?.role}
                 highlightedId={highlightedId}
             />
+            {orderModalState && (
+                <OrderEditModal
+                    order={allOrders}
+                    orders={setAllOrders}
+                    onSave={orderModalHandleSave}
+                    onClose={orderModalClose}
+                />
+            )}
             <OrdersPagination
                 currentPage={currentPage}
                 totalPages={totalPages}

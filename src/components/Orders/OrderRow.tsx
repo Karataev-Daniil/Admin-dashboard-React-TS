@@ -1,8 +1,8 @@
 import styles from '../../pages/orders/Orders.module.css'
 import DeleteIcon from '../../assets/icons/delete.svg?react'
 import CalendarIcon from '../../assets/icons/calendar.svg?react'
-import type { Order } from "../../data/orders"
-import type { User } from "../../data/users"
+import type { Order } from '../../data/orders'
+import type { User } from '../../data/users'
 import Orders from '../../pages/orders/Orders'
 
 type OrderRowProps = {

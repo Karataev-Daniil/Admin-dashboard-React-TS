@@ -9,9 +9,9 @@ const StatusFilter = ({status, onStatusChange}: StatusControlsProps) => (
       value={status}
       onChange={e => onStatusChange(e.target.value as StatusControlsProps['status'])}
     >
-      <option value="all">All</option>
-      <option value="active">Active</option>
-      <option value="inactive">Inactive</option>
+      <option value='all'>All</option>
+      <option value='active'>Active</option>
+      <option value='inactive'>Inactive</option>
     </select>
   </label>
 )

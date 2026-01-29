@@ -1,6 +1,6 @@
-import type { Dispatch, SetStateAction } from "react"
-import styles from "../../pages/orders/Orders.module.css"
-import type { Order } from "../../data/orders"
+import type { Dispatch, SetStateAction } from 'react'
+import styles from '../../pages/orders/Orders.module.css'
+import type { Order } from '../../data/orders'
 
 type StatusFilterProp = {
     status: Order['status'] | 'all'

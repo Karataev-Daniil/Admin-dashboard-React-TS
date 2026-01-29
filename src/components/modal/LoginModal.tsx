@@ -1,7 +1,7 @@
-import { useState, useEffect, type FormEvent } from "react";
-import styles from "./LoginModal.module.css";
+import { useState, useEffect, type FormEvent } from 'react';
+import styles from './LoginModal.module.css';
 import CloseIcon from '../../assets/icons/close.svg?react'
-import mockUsers from "../../data/users";
+import mockUsers from '../../data/users';
 
 type LoginModalProps = {
   setCurrUser: React.Dispatch<React.SetStateAction<{ name: string; email: string, role: string } | null>>;
@@ -10,24 +10,24 @@ type LoginModalProps = {
 };
 
 function LoginModal({ setCurrUser, isOpen, onClose }: LoginModalProps) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") handleClose();
+      if (e.key === 'Escape') handleClose();
     };
-    document.addEventListener("keydown", handleEsc);
-    return () => document.removeEventListener("keydown", handleEsc);
+    document.addEventListener('keydown', handleEsc);
+    return () => document.removeEventListener('keydown', handleEsc);
   }, []);
 
   if (!isOpen) return null;
 
   const handleClose = () => {
-    setEmail("");
-    setPassword("");
-    setError("");
+    setEmail('');
+    setPassword('');
+    setError('');
     onClose();
   };
 
@@ -38,12 +38,12 @@ function LoginModal({ setCurrUser, isOpen, onClose }: LoginModalProps) {
     const user = mockUsers.find(u => u.email.toLowerCase() === trimmedEmail);
 
     if (!user) {
-      setError("User not found");
+      setError('User not found');
       return;
     }
 
     if (user.password !== password) {
-      setError("Invalid password");
+      setError('Invalid password');
       return;
     }
 
@@ -63,8 +63,8 @@ function LoginModal({ setCurrUser, isOpen, onClose }: LoginModalProps) {
         <form className={styles.form} onSubmit={handleSubmit}>
           <input
             className={styles.input}
-            type="email"
-            placeholder="Email"
+            type='email'
+            placeholder='Email'
             value={email}
             onChange={e => setEmail(e.target.value)}
             required
@@ -72,8 +72,8 @@ function LoginModal({ setCurrUser, isOpen, onClose }: LoginModalProps) {
 
           <input
             className={styles.input}
-            type="password"
-            placeholder="Password"
+            type='password'
+            placeholder='Password'
             value={password}
             onChange={e => setPassword(e.target.value)}
             required
@@ -81,7 +81,7 @@ function LoginModal({ setCurrUser, isOpen, onClose }: LoginModalProps) {
 
           {error && <div className={styles.error}>{error}</div>}
 
-          <button className={styles.submit} type="submit" disabled={!email || !password}>
+          <button className={styles.submit} type='submit' disabled={!email || !password}>
             Log in
           </button>
         </form>

@@ -9,10 +9,10 @@ const SortFilter = ({sortBy, onSortChange}: SortControlsProps) => (
       value={sortBy}
       onChange={e => onSortChange(e.target.value as SortControlsProps['sortBy'])}
     >
-      <option value="name_asc">Name (A–Z)</option>
-      <option value="name_desc">Name (Z–A)</option>
-      <option value="date_asc">Date Joined (Oldest)</option>
-      <option value="date_desc">Date Joined (Newest)</option>
+      <option value='name_asc'>Name (A–Z)</option>
+      <option value='name_desc'>Name (Z–A)</option>
+      <option value='date_asc'>Date Joined (Oldest)</option>
+      <option value='date_desc'>Date Joined (Newest)</option>
     </select>
   </label>
 )

@@ -9,10 +9,10 @@ const RoleFilter = ({ role, onRoleChange }: RoleControlsProps) => (
       value={role}
       onChange={e => onRoleChange(e.target.value as RoleControlsProps['role'])}
     >
-      <option value="all">All</option>
-      <option value="admin">Admin</option>
-      <option value="viewer">Viewer</option>
-      <option value="manager">Manager</option>
+      <option value='all'>All</option>
+      <option value='admin'>Admin</option>
+      <option value='viewer'>Viewer</option>
+      <option value='manager'>Manager</option>
     </select>
   </label>
 )

@@ -248,9 +248,9 @@
     font-weight: 500;
     color: var(--gray_-2);
 }
-.formGroup input[type="text"],
-.formGroup input[type="email"],
-.formGroup input[type="number"],
+.formGroup input[type='text'],
+.formGroup input[type='email'],
+.formGroup input[type='number'],
 .formGroup select {
     padding: 6px 8px;
     font-size: 14px;
@@ -261,9 +261,9 @@
     width: 100%;
     box-sizing: border-box;
 }
-.formGroup input[type="text"]:focus,
-.formGroup input[type="email"]:focus,
-.formGroup input[type="number"]:focus,
+.formGroup input[type='text']:focus,
+.formGroup input[type='email']:focus,
+.formGroup input[type='number']:focus,
 .formGroup select:focus {
     border-color: var(--blue_5);
     box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
@@ -279,7 +279,7 @@
     margin-right: 16px;
     cursor: pointer;
 }
-.radioLabel input[type="radio"] {
+.radioLabel input[type='radio'] {
     margin: 0 4px 0 0;
     width: 16px;
     height: 16px;

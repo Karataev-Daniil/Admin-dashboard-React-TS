@@ -131,7 +131,7 @@ const ProductEditModal = ({
                 <div className={styles.radioGroup}>
                     <label>
                         <input
-                            type="radio"
+                            type='radio'
                             checked={formProduct.status === 'active'}
                             onChange={() =>
                                 setformProduct(prev => ({ ...prev, status: 'active' }))
@@ -141,7 +141,7 @@ const ProductEditModal = ({
                     </label>
                     <label>
                         <input
-                            type="radio"
+                            type='radio'
                             checked={formProduct.status === 'outOfStock'}
                             onChange={() =>
                                 setformProduct(prev => ({ ...prev, status: 'outOfStock' }))
@@ -151,7 +151,7 @@ const ProductEditModal = ({
                     </label>
                     <label>
                         <input
-                            type="radio"
+                            type='radio'
                             checked={formProduct.status === 'inactive'}
                             onChange={() =>
                                 setformProduct(prev => ({ ...prev, status: 'inactive' }))

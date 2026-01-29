@@ -82,7 +82,7 @@ const UserEditModal = ({
                 <label className={styles.label}>Email</label>
                 <input
                     className={styles.input}
-                    type="email"
+                    type='email'
                     value={formUser.email}
                     onChange={e =>
                         setFormUser(prev => ({ ...prev, email: e.target.value }))
@@ -103,9 +103,9 @@ const UserEditModal = ({
                             }))
                         }
                     >
-                        <option value="admin">Admin</option>
-                        <option value="manager">Manager</option>
-                        <option value="viewer">Viewer</option>
+                        <option value='admin'>Admin</option>
+                        <option value='manager'>Manager</option>
+                        <option value='viewer'>Viewer</option>
                     </select>
                 </div>
             )}
@@ -116,7 +116,7 @@ const UserEditModal = ({
                     <div className={styles.radioGroup}>
                         <label>
                             <input
-                                type="radio"
+                                type='radio'
                                 checked={formUser.status === 'active'}
                                 onChange={() =>
                                     setFormUser(prev => ({ ...prev, status: 'active' }))
@@ -127,7 +127,7 @@ const UserEditModal = ({
                           
                         <label>
                             <input
-                                type="radio"
+                                type='radio'
                                 checked={formUser.status === 'inactive'}
                                 onChange={() =>
                                     setFormUser(prev => ({ ...prev, status: 'inactive' }))

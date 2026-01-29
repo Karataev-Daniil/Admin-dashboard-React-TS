@@ -9,11 +9,11 @@ const CategoryFilter = ({ category, onCategoryChange }: CategoryProps) => (
             value={category}
             onChange={e => onCategoryChange(e.target.value as CategoryProps['category'])}
         >
-            <option value="all">All</option>
-            <option value="Smartphones">Smartphones</option>
-            <option value="Laptops">Laptops</option>
-            <option value="Tablets">Tablets</option>
-            <option value="Accessories">Accessories</option>
+            <option value='all'>All</option>
+            <option value='Smartphones'>Smartphones</option>
+            <option value='Laptops'>Laptops</option>
+            <option value='Tablets'>Tablets</option>
+            <option value='Accessories'>Accessories</option>
         </select>
     </label>
 )

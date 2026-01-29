@@ -9,9 +9,9 @@ const StockFilter = ({ stock, onStockChange }: StockProps) => (
             value={stock}
             onChange={e => onStockChange(e.target.value as StockProps['stock'])}
         >
-            <option value="all">All</option>
-            <option value="inStock">In Stock</option>
-            <option value="outOfStock">Out of Stock</option>
+            <option value='all'>All</option>
+            <option value='inStock'>In Stock</option>
+            <option value='outOfStock'>Out of Stock</option>
         </select>
     </label>
 )
