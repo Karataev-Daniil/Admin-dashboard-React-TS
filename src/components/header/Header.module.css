@@ -3,7 +3,6 @@
     border-bottom: 2px solid var(--gray_1);
     height: 60px;
 }
-
 .inner {
     display: flex;
     align-items: center;
@@ -20,16 +19,17 @@
     color: var(--gray_-2);
     gap: 8px;
 }
-
-.search svg {
+.search > svg {
     position: absolute;
-
     top: 6px;
     left: 6px;
     width: 18px;
     height: 18px;
 }
 
+.searchInputWrapper {
+    position: relative;
+}
 .searchInput {
     height: 28px;
     width: 300px;
@@ -39,6 +39,25 @@
     padding: 0 8px 0 28px;
     border-radius: 4px;
 }
+.clearButton {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray_-6);
+}
+.clearButton:hover {
+    color: var(--blue_0);
+}
+.clearButton svg {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 12px;
+    height: 12px;
+
+}
 
 .search .result {
     position: absolute;
@@ -46,7 +65,6 @@
     bottom: -100px;
     background-color: var(--gray_6);
 }
-
 .searchResult {
   position: absolute;
   top: 36px;
@@ -72,7 +90,6 @@
   cursor: pointer;
   transition: background-color 0.2s;
 }
-
 .searchItem:hover {
   background-color: var(--gray_5);
 }
@@ -89,7 +106,6 @@
   align-items: center;
   justify-content: center;
 }
-
 .searchName {
   font-size: 14px;
   font-weight: 500;
@@ -102,16 +118,13 @@
     gap: 8px;
     cursor: pointer;
 }
-
 .user:hover .avatar {
     background-color: var(--gray_2);
     color: var(--blue_1);
 }
-
 .user:hover .username {
     color: var(--blue_2);
 }
-
 .avatar {
     display: flex;
     align-items: center;
@@ -124,7 +137,6 @@
     border-radius: 50%;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
-
 .username {
     font-weight: 500;
     color: var(--blue_-4);

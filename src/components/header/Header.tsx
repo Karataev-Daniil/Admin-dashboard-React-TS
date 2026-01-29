@@ -2,6 +2,7 @@ import { useLocation } from 'react-router-dom';
 import { useMemo } from 'react';
 import styles from './Header.module.css';
 import SearchIcon from '../../assets/icons/search.svg?react';
+import CloseIcon from '../../assets/icons/close.svg?react'
 import type { User } from '../../data/users';
 import type { Product } from '../../data/products';
 import type { Order } from '../../data/orders';
@@ -99,13 +100,25 @@ const Header = ({
     <header className={styles.header}>
       <div className={styles.inner}>
         <div className={styles.search}>
-          <input
-            type="text"
-            className={styles.searchInput}
-            placeholder={placeholder}
-            value={searchValue}
-            onChange={e => setSearchValue(e.target.value)}
-          />
+          <div className={styles.searchInputWrapper}>
+            <input
+              type="text"
+              className={styles.searchInput}
+              placeholder={placeholder}
+              value={searchValue}
+              onChange={e => setSearchValue(e.target.value)}
+            />
+    
+            {searchValue && (
+              <button
+                type="button"
+                className={styles.clearButton}
+                onClick={() => setSearchValue('')}
+              >
+                <CloseIcon />
+              </button>
+            )}
+          </div>
           <SearchIcon />
 
           {searchValue.trim().length > 0 && (
