@@ -5,10 +5,10 @@ type UsersPaginationProps = {
   onNextPage: () => void
   totalPages: number
   currentPage: number
-  setCorrentPage: (page: number) => void
+  setCurrentPage: (page: number) => void
   onPrevPage: () => void
 }
-const UsersPagination = ({onNextPage, totalPages, currentPage, setCorrentPage, onPrevPage}: UsersPaginationProps) => {
+const UsersPagination = ({onNextPage, totalPages, currentPage, setCurrentPage, onPrevPage}: UsersPaginationProps) => {
   const pageNumbers = useMemo(() => {
     const pages = []
 
@@ -16,7 +16,7 @@ const UsersPagination = ({onNextPage, totalPages, currentPage, setCorrentPage, o
       pages.push(
         <button
           key={i}
-          onClick={() => setCorrentPage(i)}
+          onClick={() => setCurrentPage(i)}
           disabled={i === currentPage}
           className={`${styles.pageNumber} ${i === currentPage ? styles.active : ''}`}
         >

@@ -10,18 +10,20 @@ type ProductRowProps = {
   onEdit: (Product: Product) => void
   onDelete: (ProductId: number) => void
   currUserRole: User['role'] | undefined
+  highlightedId: number | null
 }
 
 const ProductRow = ({ 
   Product, 
   onEdit, 
   onDelete, 
-  currUserRole 
+  currUserRole,
+  highlightedId 
 }: ProductRowProps) => {
   const canManageProducts = currUserRole === 'admin' || currUserRole === 'manager';
 
   return (
-    <tr className={styles.row}>
+    <tr className={`${styles.row} ${highlightedId === Product.id ? styles.highlight : ''}`}>
       {canManageProducts && (
         <td>
           <span className={styles.id}>#{Product.id}</span>

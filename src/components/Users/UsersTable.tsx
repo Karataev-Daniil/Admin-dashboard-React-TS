@@ -7,9 +7,16 @@ type UsersTableProps = {
   onEdit: (user: User) => void
   onDelete: (userId: number) => void
   currUserRole: User['role'] | undefined
+  highlightedId: number | null
 }
 
-const UsersTable = ({ users, onEdit, onDelete, currUserRole }: UsersTableProps) => {
+const UsersTable = ({ 
+  users, 
+  onEdit, 
+  onDelete, 
+  currUserRole,
+  highlightedId,
+}: UsersTableProps) => {
   const canManageUsers = currUserRole === 'admin' || currUserRole === 'manager';
 
   const isAdmin = currUserRole === 'admin';
@@ -37,6 +44,7 @@ const UsersTable = ({ users, onEdit, onDelete, currUserRole }: UsersTableProps) 
               onDelete={onDelete}
               onEdit={onEdit}
               currUserRole={currUserRole}
+              highlightedId={highlightedId}
             />
           ))}
         </tbody>

@@ -36,8 +36,9 @@ const Sidebar = () => (
 
       <NavLink
         to="/orders"
-        className={`${styles.link} ${styles.disabled}`}
-        onClick={(e) => e.preventDefault()}
+        className={({ isActive }) =>
+          `${styles.link} ${isActive ? styles.active : ''}`
+        }
       >
         <OrdersIcon />
         <span>Orders</span>

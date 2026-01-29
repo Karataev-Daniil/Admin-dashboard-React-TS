@@ -11,7 +11,7 @@ import type { CategoryProps, StockProps, DateAddProps, StatusProps, Product } fr
 import type { MainLayoutContext } from '../../layout/MainLayout'
 
 const Products = () => {
-  const { useLocalForage, allProducts, setAllProducts, currUser } = useOutletContext<MainLayoutContext>()
+  const { useLocalForage, allProducts, setAllProducts, currUser, highlightedId } = useOutletContext<MainLayoutContext>()
 
   const [currCategory, setCurrCategory] = useLocalForage<CategoryProps['category'] | 'all'>('products-category', 'all')
   const [currStock, setCurrStock] = useLocalForage<StockProps['stock'] | 'all'>('products-stock', 'all')
@@ -106,6 +106,7 @@ const Products = () => {
           setAllProducts(prevProducts => prevProducts.filter(p => p.id !== productId))
         }}
         currUserRole={currUser?.role}
+        highlightedId={highlightedId}
       />
       {userModalState && (
         <ProductEditModal

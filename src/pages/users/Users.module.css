@@ -3,17 +3,22 @@
     display: flex;
     flex-direction: column;
 }
-
 .title {
     font-size: 24px;
     font-weight: 700;
     margin: 12px 0;
 }
-
 .divider {
     border: none;
     border-top: 1px solid var(--gray_2);
     margin-top: 8px;
+}
+.highlight {
+    animation: highlightBlink 5s infinite;
+}
+@keyframes highlightBlink {
+    0%, 100% { background-color: transparent; }
+    50% { background-color: var(--yellow_0); }
 }
 
 /* controls */
@@ -23,12 +28,10 @@
     align-items: center;
     margin: 0 0 12px;
 }
-
 .filters {
     display: flex;
     gap: 12px;
 }
-
 .filter {
     display: flex;
     align-items: center;
@@ -40,13 +43,11 @@
     font-size: 12px;
     font-weight: 700;
 }
-
 .filter span {
     font-size: 13px;
     color: var(--gray_-2);
     white-space: nowrap;
 }
-
 .select {
     border: none;
     outline: none;
@@ -55,7 +56,6 @@
     padding: 0;
     cursor: pointer;
 }
-
 .addButton {
     padding: 8px 14px;
     border-radius: 8px;
@@ -74,44 +74,36 @@
     border-left: 1px solid var(--gray_2);
     border-right: 1px solid var(--gray_2);
 }
-
 .table {
     width: 100%;
     border-collapse: collapse;
 }
-
 .table tr {
     border-bottom: 1px solid var(--gray_2);
     width: 100%;
 }
-
 .row:hover {
     background: var(--gray_5);
 }
-
 .table th,
 .table td {
     padding: 12px;
     text-align: left;
 }
-
 .table tr th:first-child {
     width: 32px;
 }
-
 .table thead {
     background: var(--gray_5);
     font-size: 14px;
     font-weight: 600;
     color: var(--gray_-3);
 }
-
 .table tfoot {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 .table tfoot tr {
     width: 100%;
     display: flex;
@@ -122,12 +114,10 @@
     font-weight: 600;
     color: var(--gray_-1);
 }
-
 .name {
     font-weight: 600;
     color: var(--gray_-6);
 }
-
 .email {
     font-size: 13px;
     color: var(--gray_-2);
@@ -140,17 +130,14 @@
     font-size: 12px;
     font-weight: 500;
 }
-
 .badge.admin {
     background: var(--blue_1);
     color: var(--gray_6);
 }
-
 .badge.manager {
     background: var(--blue_1);
     color: var(--gray_6);
 }
-
 .badge.viewer {
     background: var(--blue_-3);
     color: var(--blue_4);
@@ -160,7 +147,6 @@
     background: var(--green_0);
     color: var(--green_5);
 }
-
 .badge.inactive {
     background: var(--red_0);
     color: var(--red_5);
@@ -172,7 +158,6 @@
     align-items: center;
     gap: 8px;
 }
-
 .actionBtn {
     display: flex;
     align-items: center;
@@ -185,17 +170,14 @@
     cursor: pointer;
     transition: border-color 0.1s ease-out, color 0.1s ease-out;
 }
-
 .actionBtn:hover {
     color: var(--blue_0);
     border-color: var(--blue_0);
 }
-
 .actionBtn svg {
     width: 16px;
     height: 16px;
 }
-
 .separator {
     color: var(--gray_-2);
 }
@@ -212,19 +194,16 @@
     border-radius: 8px;
     padding: 8px 16px;
 }
-
 .modal .divider {
     margin-left: -16px;
     margin-right: -16px;
 }
-
 .modal .title {
     font-size: 20px;
     font-weight: 700;
     margin: 12px 0;
     color: var(--gray_-3);
 }
-
 .modal .closeBtn {
     position: absolute;
     display: flex;
@@ -241,7 +220,6 @@
     cursor: pointer;
     color: var(--gray_-2);
 }
-
 .modal .closeBtn .icon {
     width: 20px;
     height: 20px;
@@ -254,13 +232,11 @@
     margin: 0 0 12px;
     align-items: center;
 }
-
 .formGroup label {
     font-size: 14px;
     font-weight: 500;
     color: var(--gray_-2);
 }
-
 .formGroup input[type="text"],
 .formGroup input[type="email"],
 .formGroup select {
@@ -273,19 +249,16 @@
     width: 100%;
     box-sizing: border-box;
 }
-
 .formGroup input[type="text"]:focus,
 .formGroup input[type="email"]:focus,
 .formGroup select:focus {
     border-color: var(--blue_5);
     box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
 }
-
 .radioGroup {
     display: flex;
     align-items: center;
 }
-
 .radioLabel {
     display: flex;
     align-items: center;
@@ -293,7 +266,6 @@
     margin-right: 16px;
     cursor: pointer;
 }
-
 .radioLabel input[type="radio"] {
     margin: 0 4px 0 0;
     width: 16px;
@@ -307,11 +279,10 @@
     gap: 8px;
     margin: 8px 0 0;
 }
-
 .saveBtn {
     padding: 8px 12px;
     background-color: var(--blue_0);
-    color: white;
+    color: var(--gray_6);
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -319,11 +290,9 @@
     font-weight: 500;
     transition: background 0.2s;
 }
-
 .saveBtn:hover {
     background-color: var(--blue_-1);
 }
-
 .cancelBtn {
     padding: 8px 12px;
     background-color: var(--gray_5);
@@ -335,7 +304,6 @@
     font-weight: 500;
     transition: background 0.2s;
 }
-
 .cancelBtn:hover {
     background-color: var(--gray_4);
 }
@@ -352,11 +320,9 @@
     border-radius: 0 0 4px 4px;
     padding: 24px 0;
 }
-
 .pagination button {
     color: var(--gray_-4);
 }
-
 .btnPrevPage,
 .btnNextPage,
 .pageNumber {
@@ -364,21 +330,18 @@
     border-radius: 4px;
     border: 1px solid var(--gray_2);
 }
-
 .btnPrevPage:disabled,
 .btnNextPage:disabled {
     cursor: not-allowed;
     opacity: 0.5;
 }
-
 .btnPrevPage:hover,
 .btnNextPage:hover,
 .pageNumber:hover {
     background: var(--gray_5);
 }
-
 .pageNumber.active {
     background: var(--blue_0);
-    color: #fff;
+    color: var(--gray_6);
     border-color: var(--blue_0);
 }

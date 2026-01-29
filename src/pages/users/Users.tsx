@@ -10,11 +10,11 @@ import type { RoleControlsProps, StatusControlsProps, SortControlsProps, User } 
 import type { MainLayoutContext } from '../../layout/MainLayout'
 
 const Users = () => {
-  const { useLocalForage, allUsers, setAllUsers, currUser } = useOutletContext<MainLayoutContext>()
+  const { useLocalForage, allUsers, setAllUsers, currUser, highlightedId } = useOutletContext<MainLayoutContext>()
 
-  const [corrRole, setCorrRole] = useLocalForage<RoleControlsProps['role']>('users-role', 'all')
-  const [corrStatus, setCorrStatus] = useLocalForage<StatusControlsProps['status']>('users-status', 'all')
-  const [corrSort, setCorrSort] = useLocalForage<SortControlsProps['sortBy']>('users-sort', 'name_asc')
+  const [currRole, setCurrRole] = useLocalForage<RoleControlsProps['role']>('users-role', 'all')
+  const [currStatus, setCurrStatus] = useLocalForage<StatusControlsProps['status']>('users-status', 'all')
+  const [currSort, setCurrSort] = useLocalForage<SortControlsProps['sortBy']>('users-sort', 'name_asc')
 
   const [selectedUser, setSelectedUser] = useState<User | undefined>(undefined)
   const [userModalState, setUserModalState] = useState<boolean>(false)
@@ -24,12 +24,12 @@ const Users = () => {
 
   const filteredUsers = useMemo(() => {
     let result = allUsers.filter(u => {
-      const roleMatch = corrRole === 'all' || u.role === corrRole
-      const statusMatch = corrStatus === 'all' || u.status === corrStatus
+      const roleMatch = currRole === 'all' || u.role === currRole
+      const statusMatch = currStatus === 'all' || u.status === currStatus
       return roleMatch && statusMatch
     })
 
-    switch (corrSort) {
+    switch (currSort) {
       case 'name_asc':
         result.sort((a, b) => a.name.localeCompare(b.name, 'en'))
         break
@@ -45,7 +45,7 @@ const Users = () => {
     }
 
     return result
-  }, [allUsers, corrRole, corrStatus, corrSort])
+  }, [allUsers, currRole, currStatus, currSort])
 
   const totalPages = useMemo(() => (
     Math.ceil(filteredUsers.length / visibleCount)
@@ -97,12 +97,12 @@ const Users = () => {
     <div className={styles.page}>
       <UsersHeader />
       <UsersControls 
-        role={corrRole}
-        onRoleChange={setCorrRole}
-        status={corrStatus}
-        onStatusChange={setCorrStatus}
-        sortBy={corrSort}
-        onSortChange={setCorrSort}
+        role={currRole}
+        onRoleChange={setCurrRole}
+        status={currStatus}
+        onStatusChange={setCurrStatus}
+        sortBy={currSort}
+        onSortChange={setCurrSort}
         onEdit={handleEditUser}
         currUserRole={currUser?.role}
       />
@@ -111,6 +111,7 @@ const Users = () => {
         onDelete={userHandleDelete}
         onEdit={handleEditUser}
         currUserRole={currUser?.role}
+        highlightedId={highlightedId}
       />
       {userModalState && (
         <UserEditModal
@@ -125,7 +126,7 @@ const Users = () => {
         onNextPage={handleNextPage}
         totalPages={totalPages}
         currentPage={currentPage}
-        setCorrentPage={setCurrentPage}
+        setCurrentPage={setCurrentPage}
         onPrevPage={handlePrevPage}
       />
     </div>

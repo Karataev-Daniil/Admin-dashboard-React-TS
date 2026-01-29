@@ -9,14 +9,21 @@ type UserRowProps = {
   onEdit: (user: User) => void
   onDelete: (userId: number) => void
   currUserRole: User['role'] | undefined
+  highlightedId: number | null
 }
 
-const UserRow = ({ user, onEdit, onDelete, currUserRole }: UserRowProps) => {
+const UserRow = ({ 
+  user, 
+  onEdit, 
+  onDelete, 
+  currUserRole,
+  highlightedId
+}: UserRowProps) => {
   const canManageUsers = currUserRole === 'admin' || currUserRole === 'manager';
   const isAdmin = currUserRole === 'admin';
 
   return (
-    <tr className={styles.row}>
+    <tr className={`${styles.row} ${highlightedId === user.id ? styles.highlight : ''}`}>
       {canManageUsers && (
         <td>
           <span className={styles.id}>#{user.id}</span>

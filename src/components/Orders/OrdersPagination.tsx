@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
-import styles from '../../pages/users/Users.module.css'
+import styles from '../../pages/orders/Orders.module.css'
 
-type ProductsPaginationProps = {
+type OrdersPaginationProps = {
     onNextPage: () => void
     onPrevPage: () => void
     totalPages: number
@@ -9,13 +9,13 @@ type ProductsPaginationProps = {
     setCurrentPage: (page: number) => void
 }
 
-const ProductsPagination = ({ 
+const OrdersPagination = ({
     onNextPage, 
     onPrevPage, 
     totalPages, 
     currentPage, 
     setCurrentPage 
-}: ProductsPaginationProps) => {
+}: OrdersPaginationProps) => {
     const pageNumbers = useMemo(() => {
         const pages = []
 
@@ -55,4 +55,4 @@ const ProductsPagination = ({
     )
 }
 
-export default ProductsPagination
+export default OrdersPagination

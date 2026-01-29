@@ -8,13 +8,15 @@ type ProductsTableProps = {
     onEdit: (Product: Product) => void
     onDelete: (ProductId: number) => void
     currUserRole: User['role'] | undefined
+    highlightedId: number | null
 }
 
 const ProductsTable = ({
     Products,
     onEdit,
     onDelete,
-    currUserRole
+    currUserRole,
+    highlightedId
 }: ProductsTableProps) => {
     const canManageProducts = currUserRole === 'admin' || currUserRole === 'manager';
 
@@ -41,6 +43,7 @@ const ProductsTable = ({
                             onEdit={onEdit}
                             onDelete={onDelete}
                             currUserRole={currUserRole}
+                            highlightedId={highlightedId}
                         />
                     ))}
                 </tbody>

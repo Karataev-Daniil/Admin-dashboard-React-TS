@@ -6,9 +6,11 @@ import Sidebar from '../components/sidebar/Sidebar';
 import LoginModal from '../components/modal/LoginModal';
 import mockUsers from '../data/users';
 import mockProducts from '../data/products';
+import mockOrders from '../data/orders';
 import styles from './MainLayout.module.css';
 import type { User } from '../data/users';
 import type { Product } from '../data/products';
+import type { Order } from '../data/orders';
 
 import '../styles/globals.css';
 import '../styles/variables.css';
@@ -27,16 +29,31 @@ export type MainLayoutContext = {
   searchValue: string;
   allProducts: Product[];
   setAllProducts: React.Dispatch<React.SetStateAction<Product[]>>;
+  allOrders: Order[]
+  setAllOrders: React.Dispatch<React.SetStateAction<Order[]>>;
   currUser: { name: string; email: string; role: User['role'] | undefined } | null;
+  highlightedId: number | null;
 };
 
-function useLocalForage<T = string>(key: string, initialValue: T): UseLocalForageReturn<T> {
+function useLocalForage<T>(key: string, initialValue: T): UseLocalForageReturn<T> {
   const [state, setState] = useState<T>(initialValue);
 
   useEffect(() => {
     async function load() {
-      const saved = await localforage.getItem<T>(key);
-      if (saved !== null) setState(saved);
+      const saved = await localforage.getItem(key);
+
+      if (saved !== null) {
+        if (Array.isArray(initialValue)) {
+          if (Array.isArray(saved)) {
+            setState(saved as T);
+          } else {
+            console.warn(`${key} is not array, fallback to initialValue`);
+            setState(initialValue);
+          }
+        } else {
+          setState(saved as T);
+        }
+      }
     }
     load();
   }, [key]);
@@ -51,6 +68,8 @@ function useLocalForage<T = string>(key: string, initialValue: T): UseLocalForag
 const MainLayout = () => {
   const [allUsers, setAllUsers] = useLocalForage<User[]>('all-users', mockUsers);
   const [allProducts, setAllProducts] = useLocalForage<Product[]>('all-products', mockProducts);
+  const [allOrders, setAllOrders] = useLocalForage<Order[]>('all-orders', mockOrders)
+  const [highlightedId, setHighlightedId] = useState<number | null>(null);
 
   const [currUser, setCurrUser] = useLocalForage<{ name: string; email: string; role: string } | null>('data-user', null);
 
@@ -68,12 +87,18 @@ const MainLayout = () => {
 
       <div className={styles.content}>
         <Header
-          currUser={currUser}
-          users={allUsers}
-          products={allProducts}
-          searchValue={searchValue}
           setSearchValue={setSearchValue}
+          searchValue={searchValue}
           openLogin={openLogin}
+          products={allProducts}
+          users={allUsers}
+          orders={allOrders}
+          currUser={currUser}
+          setUsers={setAllUsers}
+          setProducts={setAllProducts}
+          setOrders={setAllOrders}
+          setHighlightedId={setHighlightedId}
+          highlightedId={highlightedId}
         />
 
         <LoginModal
@@ -88,10 +113,13 @@ const MainLayout = () => {
               useLocalForage,
               allUsers,
               setAllUsers,
-              searchValue,
+              allOrders,
+              setAllOrders,
               allProducts,
               setAllProducts,
+              searchValue,
               currUser,
+              highlightedId,
             }}
           />
         </main>
