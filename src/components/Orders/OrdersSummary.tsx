@@ -3,6 +3,7 @@ import styles from '../../pages/orders/Orders.module.css'
 import OrdersActiveIcon from '../../assets/icons/products-active.svg?react'
 import OrdersInactiveIcon from '../../assets/icons/products-inactive.svg?react'
 import OrdersOutOfStockIcon from '../../assets/icons/products-out-of-stock.svg?react'
+import CartIcon from '../../assets/icons/cart.svg?react'
 
 type OrdersSummaryProp = {
     orders: Order[]
@@ -32,7 +33,9 @@ const OrdersSummary = ({
     return (
         <div className={styles.summaryContainer}>
             <div className={`${styles.summaryCard} ${styles.totalCard}`}>
-                
+                <CartIcon 
+                    className={styles.icon}
+                />
                 <div className={styles.content}>
                     <span className={styles.label}>Total Orders</span>
                     <p className={styles.count}>{totalOrders.length}</p>
