@@ -19,6 +19,7 @@ const ProductEditModal = ({
     // const isAdmin = currUserRole === 'admin';
     // const isManager = currUserRole === 'manager';
 
+    
     const isEditing = Boolean(true);
 
     // const canEditTarget = isAdmin || (isManager && user?.role === 'viewer');
