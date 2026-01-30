@@ -114,7 +114,6 @@ const Products = () => {
           product={selectedProducts}
           onSave={productsModalHandleSave}
           onClose={productsModalClose}
-          currUserRole={currUser?.role}
         />
       )}
       <ProductsPagination 

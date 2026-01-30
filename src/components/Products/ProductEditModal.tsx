@@ -2,14 +2,12 @@ import { useState } from 'react';
 import styles from '../../pages/products/Products.module.css';
 import CloseIcon from '../../assets/icons/close.svg?react'
 import type { Product } from '../../data/products';
-import type { User } from '../../data/users'
 
 type ProductEditProps = {
     product?: Product
     products: Product[]
     onSave: (formProduct: Product) => void
     onClose: () => void
-    currUserRole: User['role'] | undefined
 };
 
 const ProductEditModal = ({
@@ -17,7 +15,6 @@ const ProductEditModal = ({
     products,
     onSave,
     onClose,
-    currUserRole
 }: ProductEditProps) => {
     // const isAdmin = currUserRole === 'admin';
     // const isManager = currUserRole === 'manager';

@@ -12,7 +12,7 @@ import type { MainLayoutContext } from '../../layout/MainLayout'
 
 
 const Orders = () => {
-    const { useLocalForage, allOrders, setAllOrders, currUser, highlightedId } = useOutletContext<MainLayoutContext>()
+    const { useLocalForage, allOrders, setAllOrders, highlightedId } = useOutletContext<MainLayoutContext>()
     const [currentPage, setCurrentPage] = useState(1)
     const [visibleCount] = useState(10)
 
@@ -82,7 +82,6 @@ const Orders = () => {
             <OrdersTable 
                 Orders={paginatedOrders}
                 onDelete={() => {}}
-                currUserRole={currUser?.role}
                 highlightedId={highlightedId}
                 onEdit={handleEditOrder}
             />

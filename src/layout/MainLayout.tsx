@@ -98,7 +98,6 @@ const MainLayout = () => {
           setProducts={setAllProducts}
           setOrders={setAllOrders}
           setHighlightedId={setHighlightedId}
-          highlightedId={highlightedId}
         />
 
         <LoginModal

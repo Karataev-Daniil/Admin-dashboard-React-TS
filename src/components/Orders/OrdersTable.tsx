@@ -1,12 +1,10 @@
 import styles from '../../pages/Orders/Orders.module.css'
 import OrderRow from './OrderRow'
 import type { Order } from '../../data/orders'
-import type { User } from '../../data/users'
 
 type OrdersTableProps = {
     Orders: Order[]
     onDelete: (OrderId: number) => void
-    currUserRole: User['role'] | undefined
     highlightedId: number | null
     onEdit: (order: Order) => void
 }
@@ -14,12 +12,9 @@ type OrdersTableProps = {
 const OrdersTable = ({
     Orders,
     onDelete,
-    currUserRole,
     highlightedId,
     onEdit
 }: OrdersTableProps) => {
-    const canManageOrders = currUserRole === 'admin' || currUserRole === 'manager';
-
     return (
         <div className={styles.tableWrapper}>
             <table className={styles.table}>
@@ -40,8 +35,7 @@ const OrdersTable = ({
                             key={Order.id}
                             // Orders={Orders}
                             order={Order}
-                            // onDelete={onDelete}
-                            currUserRole={currUserRole}
+                            onDelete={onDelete}
                             highlightedId={highlightedId}
                             onEdit={onEdit}
                         />
