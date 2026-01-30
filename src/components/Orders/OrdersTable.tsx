@@ -1,4 +1,4 @@
-import styles from '../../pages/Orders/Orders.module.css'
+import styles from '../../pages/orders/Orders.module.css'
 import OrderRow from './OrderRow'
 import type { Order } from '../../data/orders'
 
