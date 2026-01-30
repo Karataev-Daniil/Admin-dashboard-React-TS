@@ -5,6 +5,7 @@ import OrdersControls from '../../components/Orders/OrdersControls'
 import OrdersTable from '../../components/Orders/OrdersTable'
 import OrdersPagination from '../../components/Orders/OrdersPagination'
 import OrdersSummary from '../../components/Orders/OrdersSummary'
+import OrderEditModal from '../../components/Orders/OrderEditModal'
 import styles from './Orders.module.css'
 import type { Order } from '../../data/orders'
 import type { MainLayoutContext } from '../../layout/MainLayout'
@@ -13,7 +14,7 @@ import type { MainLayoutContext } from '../../layout/MainLayout'
 const Orders = () => {
     const { useLocalForage, allOrders, setAllOrders, currUser, highlightedId } = useOutletContext<MainLayoutContext>()
     const [currentPage, setCurrentPage] = useState(1)
-    const [visibleCount, setVisibleCount] = useState(10)
+    const [visibleCount] = useState(10)
 
     const [currStatus, setCurrStatus] = useLocalForage<Order['status'] | 'all'>('order-status', 'all')
 
@@ -83,11 +84,11 @@ const Orders = () => {
                 onDelete={() => {}}
                 currUserRole={currUser?.role}
                 highlightedId={highlightedId}
+                onEdit={handleEditOrder}
             />
             {orderModalState && (
                 <OrderEditModal
-                    order={allOrders}
-                    orders={setAllOrders}
+                    order={selectedOrder}
                     onSave={orderModalHandleSave}
                     onClose={orderModalClose}
                 />

@@ -19,7 +19,7 @@ const Products = () => {
   const [currStatus, setCurrStatus] = useLocalForage<StatusProps['status'] | 'all'>('products-status', 'all')
 
   const [currentPage, setCurrentPage] = useState(1)
-  const [visibleCount, setVisibleCount] = useState(10)
+  const [visibleCount] = useState(10)
 
   const filteredProducts = useMemo(() => {
     return allProducts.filter((p) => {

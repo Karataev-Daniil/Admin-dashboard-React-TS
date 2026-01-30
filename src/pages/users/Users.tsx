@@ -20,7 +20,7 @@ const Users = () => {
   const [userModalState, setUserModalState] = useState<boolean>(false)
 
   const [currentPage, setCurrentPage] = useState(1)
-  const [visibleCount, setVisibleCount] = useState(10)
+  const [visibleCount] = useState(10)
 
   const filteredUsers = useMemo(() => {
     let result = allUsers.filter(u => {

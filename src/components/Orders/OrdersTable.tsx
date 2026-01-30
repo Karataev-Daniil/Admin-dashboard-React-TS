@@ -8,13 +8,15 @@ type OrdersTableProps = {
     onDelete: (OrderId: number) => void
     currUserRole: User['role'] | undefined
     highlightedId: number | null
+    onEdit: (order: Order) => void
 }
 
 const OrdersTable = ({
     Orders,
     onDelete,
     currUserRole,
-    highlightedId
+    highlightedId,
+    onEdit
 }: OrdersTableProps) => {
     const canManageOrders = currUserRole === 'admin' || currUserRole === 'manager';
 
@@ -41,6 +43,7 @@ const OrdersTable = ({
                             // onDelete={onDelete}
                             currUserRole={currUserRole}
                             highlightedId={highlightedId}
+                            onEdit={onEdit}
                         />
                     ))}
                 </tbody>

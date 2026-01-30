@@ -19,7 +19,6 @@ type HeaderProps = {
   setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
   setOrders: React.Dispatch<React.SetStateAction<Order[]>>;
   setHighlightedId: React.Dispatch<React.SetStateAction<number | null>>;
-  highlightedId: number | null;
 };
 
 const Header = ({
@@ -34,7 +33,6 @@ const Header = ({
   setProducts,
   setOrders,
   setHighlightedId,
-  highlightedId,
 }: HeaderProps) => {
   const location = useLocation();
 

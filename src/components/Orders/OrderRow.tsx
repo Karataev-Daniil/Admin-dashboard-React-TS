@@ -11,6 +11,7 @@ type OrderRowProps = {
     // onDelete: () => void
     currUserRole: User['role'] | undefined
     highlightedId: number | null
+    onEdit: (order: Order) => void
 }
 
 const OrderRow = ({
@@ -19,6 +20,7 @@ const OrderRow = ({
     // onDelete,
     currUserRole,
     highlightedId,
+    onEdit,
 }: OrderRowProps) => {
 
     return (
@@ -46,6 +48,7 @@ const OrderRow = ({
             >
                 <button
                     className={styles.actionBtn}
+                    onClick={() => onEdit(order)}
                 >
                     <CalendarIcon />
                     View details
