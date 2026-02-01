@@ -7,7 +7,6 @@ import OrdersPagination from '../../components/Orders/OrdersPagination'
 import OrdersSummary from '../../components/Orders/OrdersSummary'
 import OrderEditModal from '../../components/Orders/OrderEditModal'
 import styles from '../../styles/pages/page.module.css'
-import commonStyles from '../../styles/pages/common.module.css'
 import type { Order } from '../../data/orders'
 import type { MainLayoutContext } from '../../layout/MainLayout'
 

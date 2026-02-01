@@ -51,6 +51,22 @@
     padding: 18px 0;
 }
 
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.userInfo .userName {
+    font-weight: 600;
+    color: var(--gray_-1);
+}
+
+.userInfo .userEmail {
+    font-size: 13px;
+    color: var(--gray_-2);
+}
+
 .id {
     font-weight: 600;
     color: var(--gray_-1);

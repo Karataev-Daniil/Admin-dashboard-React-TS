@@ -7,7 +7,6 @@ import ProductsPagination from '../../components/Products/ProductsPagination'
 import ProductEditModal from '../../components/Products/ProductEditModal'
 import ProductsSummary from '../../components/Products/ProductsSummary'
 import styles from '../../styles/pages/page.module.css'
-import commonStyles from '../../styles/pages/common.module.css'
 import type { CategoryProps, StockProps, DateAddProps, StatusProps, Product } from '../../data/products'
 import type { MainLayoutContext } from '../../layout/MainLayout'
 
