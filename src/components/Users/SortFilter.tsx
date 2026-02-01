@@ -1,4 +1,4 @@
-import styles from '../../pages/users/Users.module.css'
+import styles from '../../styles/pages/controls.module.css'
 import type {SortControlsProps} from '../../data/users'
 
 const SortFilter = ({sortBy, onSortChange}: SortControlsProps) => (

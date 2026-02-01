@@ -24,6 +24,7 @@ export type SortControlsProps = {
 }
 
 const mockUsers: User[] = [
+  { id: 999, name: 'Test Bearer', email: 'bearer@example.com', role: 'admin', status: 'active', createdAt: '2026-01-01', password: '12345', },
   { id: 101, name: 'Alice Johnson', email: 'alice@example.com', role: 'admin',   status: 'active',   createdAt: '2024-01-15', password: '12345' },
   { id: 102, name: 'Bob Smith',     email: 'bob@example.com',   role: 'viewer',  status: 'inactive', createdAt: '2023-11-02', password: '12345' },
   { id: 103, name: 'Charlie Brown', email: 'charlie@example.com', role: 'manager', status: 'active', createdAt: '2024-03-08', password: '12345' },

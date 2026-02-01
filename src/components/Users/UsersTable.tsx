@@ -1,4 +1,4 @@
-import styles from '../../pages/users/Users.module.css'
+import styles from '../../styles/pages/table.module.css'
 import UserRow from './UserRow'
 import type { User } from '../../data/users'
 

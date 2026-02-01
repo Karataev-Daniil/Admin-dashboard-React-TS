@@ -1,22 +1,18 @@
 import { useState } from 'react'
-import styles from '../../pages/orders/Orders.module.css'
+import styles from '../../styles/pages/modal.module.css'
 import type { Order } from '../../data/orders'
 import type { Product } from '../../data/products'
 import mockUsers from '../../data/users'
 import mockProducts from '../../data/products'
 import CloseIcon from '../../assets/icons/close.svg?react'
 
-type OrderEditModalProps = {
+type Props = {
     order?: Order
     onSave: (order: Order) => void
     onClose: () => void
 }
 
-const OrderEditModal = ({ 
-    order, 
-    onSave, 
-    onClose 
-}: OrderEditModalProps) => {
+const OrderEditModal = ({ order, onSave, onClose }: Props) => {
     const isEditing = Boolean(order)
 
     const [formOrder, setFormOrder] = useState<Order>(
@@ -25,7 +21,7 @@ const OrderEditModal = ({
             userId: 0,
             userName: '',
             userEmail: '',
-            date: new Date().toISOString(),
+            date: new Date().toISOString().slice(0, 10),
             status: 'pending',
             products: [],
             total: 0,
@@ -37,24 +33,32 @@ const OrderEditModal = ({
     const filteredProducts = mockProducts.filter(
         p =>
             p.status === 'active' &&
-            p.name.toLowerCase().includes(search.toLowerCase())
+            p.name.toLowerCase().includes(search.toLowerCase()) &&
+            !formOrder.products.some(fp => fp.id === p.id)
     )
 
+    const recalcTotal = (products: Product[]) => products.reduce((sum, p) => sum + p.price, 0)
+
     const addProduct = (product: Product) => {
-        if (formOrder.products.some(p => p.id === product.id)) return
-
         const products = [...formOrder.products, product]
-        const total = products.reduce((sum, p) => sum + p.price, 0)
 
-        setFormOrder({ ...formOrder, products, total })
+        setFormOrder({
+            ...formOrder,
+            products,
+            total: recalcTotal(products),
+        })
+
         setSearch('')
     }
 
     const removeProduct = (id: number) => {
         const products = formOrder.products.filter(p => p.id !== id)
-        const total = products.reduce((sum, p) => sum + p.price, 0)
 
-        setFormOrder({ ...formOrder, products, total })
+        setFormOrder({
+            ...formOrder,
+            products,
+            total: recalcTotal(products),
+        })
     }
 
     const handleUserChange = (id: number) => {
@@ -70,86 +74,121 @@ const OrderEditModal = ({
     }
 
     return (
-        <div className={styles.modal}>
-            <h1 className={styles.title}>
-                {isEditing ? 'Edit Order' : 'Add Order'} <span>#{formOrder.id}</span>
-            </h1>
+        <div className={styles.overlay} onClick={onClose}>
+            <div
+                className={styles.modal}
+                onClick={e => e.stopPropagation()}
+            >
+                <h1 className={styles.title}>
+                    {isEditing ? 'Edit Order' : 'Add Order'} <span>#{formOrder.id}</span>
+                </h1>
 
-            <button className={styles.closeBtn} onClick={onClose}>
-                <CloseIcon />
-            </button>
+                <button className={styles.closeBtn} onClick={onClose}>
+                    <CloseIcon />
+                </button>
 
-            <div className={styles.formGroup}>
-                <label>User</label>
-                <select
-                    value={formOrder.userId}
-                    onChange={e => handleUserChange(Number(e.target.value))}
-                >
-                    <option value={0}>Select User</option>
-                    {mockUsers.map(u => (
-                        <option key={u.id} value={u.id}>
-                            {u.name} ({u.email})
-                        </option>
-                    ))}
-                </select>
-            </div>
-
-            <div className={styles.formGroup}>
-                <label>Add Products</label>
-                <input
-                    type="text"
-                    placeholder="Search products..."
-                    value={search}
-                    onChange={e => setSearch(e.target.value)}
-                />
-            </div>
-
-            <div className={styles.formGroup}>
-                <div className={styles.searchResults}>
-                    {filteredProducts.map(p => (
-                        <div key={p.id} onClick={() => addProduct(p)}>
-                            {p.name} ({p.price}$)
-                        </div>
-                    ))}
-                </div>
-            </div>
-
-            {formOrder.products.length > 0 && (
+                <hr className={styles.divider} />
+                
                 <div className={styles.formGroup}>
-                    <label>Selected Products:</label>
-                    <ul>
-                        {formOrder.products.map(p => (
-                            <li key={p.id}>
-                                {p.name} ({p.price}$)
-                                <button onClick={() => removeProduct(p.id)}>×</button>
-                            </li>
+                    <label>User</label>
+                    <select
+                        value={formOrder.userId}
+                        onChange={e => handleUserChange(Number(e.target.value))}
+                    >
+                        <option value={0}>Select user</option>
+                        {mockUsers.map(u => (
+                            <option key={u.id} value={u.id}>
+                                {u.name} ({u.email})
+                            </option>
                         ))}
-                    </ul>
+                    </select>
                 </div>
-            )}
 
-            <div className={styles.formGroup}>
-                <label>Status</label>
-                <select
-                    value={formOrder.status}
-                    onChange={e =>
-                        setFormOrder({ ...formOrder, status: e.target.value as Order['status'] })
-                    }
-                >
-                    <option value="pending">Pending</option>
-                    <option value="completed">Completed</option>
-                    <option value="canceled">Canceled</option>
-                </select>
-            </div>
+                <div className={styles.formGroup}>
+                    <label>Date</label>
+                    <input type="text" value={formOrder.date} disabled />
+                </div>
 
-            <div className={styles.formGroup}>
-                <label>Total:</label>
-                <span>{formOrder.total}$</span>
-            </div>
+                <div className={styles.formGroup}>
+                    <label>Add product</label>
+                    <input
+                        type="text"
+                        placeholder="Search product..."
+                        value={search}
+                        onChange={e => setSearch(e.target.value)}
+                    />
+                </div>
 
-            <div className={styles.modalActions}>
-                <button onClick={() => onSave(formOrder)}>Save</button>
-                <button onClick={onClose}>Cancel</button>
+                {search && filteredProducts.length > 0 && (
+                    <div className={styles.searchResults}>
+                        {filteredProducts.map(p => (
+                            <div
+                                key={p.id}
+                                className={styles.searchItem}
+                                onClick={() => addProduct(p)}
+                            >
+                                {p.name} -- ${p.price}
+                            </div>
+                        ))}
+                    </div>
+                )}
+
+                {formOrder.products.length > 0 && (
+                    <div className={styles.formGroup}>
+                        <label>Products</label>
+                        <ul className={styles.productsList}>
+                            {formOrder.products.map(p => (
+                                <li key={p.id}>
+                                    <span>{p.name}</span>
+                                    <span>
+                                        <span>${p.price}</span>
+                                        <button onClick={() => removeProduct(p.id)}>×</button>
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+
+                <div className={styles.formGroup}>
+                    <label>Status</label>
+                    <select
+                        value={formOrder.status}
+                        onChange={e =>
+                            setFormOrder({
+                                ...formOrder,
+                                status: e.target.value as Order['status'],
+                            })
+                        }
+                    >
+                        <option value="pending">Pending</option>
+                        <option value="completed">Completed</option>
+                        <option value="canceled">Canceled</option>
+                    </select>
+                </div>
+
+                <div className={styles.formGroup}>
+                    <label>Total</label>
+                    <strong>${formOrder.total}</strong>
+                </div>
+
+                <hr className={styles.divider} />
+
+                <div className={styles.modalActions}>
+                    <button
+                        className={styles.saveBtn}
+                        onClick={() => onSave(formOrder)}
+                        disabled={!formOrder.userId}
+                    >
+                        Save
+                    </button>
+                    <button
+                        className={styles.cancelBtn}
+                        onClick={onClose}
+                    >
+                        Cancel
+                    </button>
+                </div>
             </div>
         </div>
     )

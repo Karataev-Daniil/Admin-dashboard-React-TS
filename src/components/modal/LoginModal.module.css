@@ -7,7 +7,6 @@
   justify-content: center;
   z-index: 1000;
 }
-
 .modal {
   position: relative;
   background: var(--gray_6);
@@ -17,7 +16,6 @@
   max-width: 300px;
   animation: fadeIn 0.2s ease-out;
 }
-
 .title {
   margin-bottom: 16px;
   font-size: 20px;
@@ -29,14 +27,12 @@
   flex-direction: column;
   gap: 12px;
 }
-
 .input {
   padding: 10px 12px;
   font-size: 14px;
   border-radius: 6px;
   border: 1px solid var(--gray_2);
 }
-
 .input:focus {
   outline: none;
   border-color: var(--blue_0);
@@ -52,7 +48,6 @@
   cursor: pointer;
   transition: background 0.1s ease-in-out;
 }
-
 .submit:hover {
   background: var(--blue_1);
 }
@@ -68,7 +63,6 @@
   cursor: pointer;
   text-align: center;
 }
-
 .close svg {
   width: 15px;
   height: 15px;
@@ -76,7 +70,7 @@
 }
 
 .error {
-  color: #dc2626;
+  color: var(--red_0);
   font-size: 13px;
   text-align: center;
 }
@@ -84,10 +78,8 @@
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(8px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }

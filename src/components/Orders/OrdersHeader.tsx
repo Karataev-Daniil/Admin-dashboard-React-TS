@@ -1,4 +1,4 @@
-import styles from '../../pages/orders/Orders.module.css' 
+import styles from '../../styles/pages/common.module.css'
 
 const OrdersHeader = () => {
     return (

@@ -1,5 +1,5 @@
 import type { Order } from '../../data/orders'
-import styles from '../../pages/orders/Orders.module.css'
+import styles from '../../styles/pages/summary.module.css';
 import OrdersActiveIcon from '../../assets/icons/products-active.svg?react'
 import OrdersInactiveIcon from '../../assets/icons/products-inactive.svg?react'
 import OrdersOutOfStockIcon from '../../assets/icons/products-out-of-stock.svg?react'

@@ -1,4 +1,5 @@
-import styles from '../../pages/products/Products.module.css'
+import styles from '../../styles/pages/common.module.css'
+
 
 const ProductsHeader = () => (
   <div className={styles.header}>

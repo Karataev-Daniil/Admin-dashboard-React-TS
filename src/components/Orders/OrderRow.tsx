@@ -1,4 +1,4 @@
-import styles from '../../pages/orders/Orders.module.css'
+import styles from '../../styles/pages/table.module.css'
 import DeleteIcon from '../../assets/icons/delete.svg?react'
 import CalendarIcon from '../../assets/icons/calendar.svg?react'
 import type { Order } from '../../data/orders'

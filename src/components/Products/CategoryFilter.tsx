@@ -1,4 +1,4 @@
-import styles from '../../pages/products/Products.module.css'
+import styles from '../../styles/pages/controls.module.css'
 import type { CategoryProps } from '../../data/products'
 
 const CategoryFilter = ({ category, onCategoryChange }: CategoryProps) => (

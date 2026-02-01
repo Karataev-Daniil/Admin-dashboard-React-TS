@@ -1,5 +1,5 @@
 import type { Dispatch, SetStateAction } from 'react'
-import styles from '../../pages/orders/Orders.module.css'
+import styles from '../../styles/pages/controls.module.css'
 import type { Order } from '../../data/orders'
 
 type StatusFilterProp = {

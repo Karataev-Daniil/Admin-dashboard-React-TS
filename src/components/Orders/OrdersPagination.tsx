@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import styles from '../../pages/orders/Orders.module.css'
+import styles from '../../styles/pages/pagination.module.css'
 
 type OrdersPaginationProps = {
     onNextPage: () => void

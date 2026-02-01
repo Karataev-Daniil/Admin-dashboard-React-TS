@@ -1,4 +1,4 @@
-import styles from '../../pages/products/Products.module.css'
+import styles from '../../styles/pages/table.module.css'
 import ProductRow from './ProductRow'
 import type { Product } from '../../data/products'
 import type { User } from '../../data/users'

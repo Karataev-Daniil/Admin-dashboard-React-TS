@@ -1,5 +1,5 @@
 import type { Product } from '../../data/products'
-import styles from '../../pages/products/Products.module.css';
+import styles from '../../styles/pages/summary.module.css';
 import ProductTotalIcon from '../../assets/icons/products-total.svg?react'
 import ProductsActiveIcon from '../../assets/icons/products-active.svg?react'
 import ProductsInactiveIcon from '../../assets/icons/products-inactive.svg?react'

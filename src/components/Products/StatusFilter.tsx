@@ -1,4 +1,4 @@
-import styles from '../../pages/products/Products.module.css'
+import styles from '../../styles/pages/controls.module.css'
 import type { StatusProps } from '../../data/products'
 
 const StatusFilter = ({ status, onStatusChange }: StatusProps) => (

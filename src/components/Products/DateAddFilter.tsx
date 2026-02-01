@@ -1,4 +1,4 @@
-import styles from '../../pages/products/Products.module.css'
+import styles from '../../styles/pages/controls.module.css'
 import type { DateAddProps } from '../../data/products'
 
 const DateAddFilter = ({ dateAdd, onDateAddChange }: DateAddProps) => (

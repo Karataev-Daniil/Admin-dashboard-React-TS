@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import styles from '../../pages/products/Products.module.css';
+import styles from '../../styles/pages/modal.module.css';
+import commonStyles from '../../styles/pages/common.module.css';
 import CloseIcon from '../../assets/icons/close.svg?react'
 import type { Product } from '../../data/products';
 
@@ -52,129 +53,131 @@ const ProductEditModal = ({
 
 
     return (
-        <div className={styles.modal}>
-            <h1 className={styles.title}>
-                {isEditing ? 'Edit Product' : 'Add Product'}
-            </h1>
+        <div className={styles.overlay} onClick={onClose}>
+            <div className={styles.modal}>
+                <h1 className={styles.title}>
+                    {isEditing ? 'Edit Product' : 'Add Product'}
+                </h1>
 
-            <button onClick={onClose} className={styles.closeBtn}>
-                <CloseIcon />
-            </button>
+                <button onClick={onClose} className={styles.closeBtn}>
+                    <CloseIcon />
+                </button>
 
-            <hr className={styles.divider} />
+                <hr className={styles.divider} />
 
-            <div className={styles.formGroup}>
-                <label className={styles.label}>Name</label>
-                <input
-                    className={styles.input}
-                    type='text'
-                    value={formProduct.name}
-                    onChange={e =>
-                        setformProduct(prev => ({ ...prev, name: e.target.value }))
-                    }
-                />
-            </div>
-
-            <div className={styles.formGroup}>
-                <label className={styles.label}>Type</label>
-                <select
-                    className={styles.input}
-                    value={formProduct.type}
-                    onChange={e =>
-                        setformProduct(prev => ({ ...prev, type: e.target.value as Product['type'] }))
-                    }
-                >
-                    <option value=''>Select Type</option>
-                    <option value='Smartphones'>Smartphones</option>
-                    <option value='Laptops'>Laptops</option>
-                    <option value='Tablets'>Tablets</option>
-                    <option value='Accessories'>Accessories</option>
-                    <option value='Headphones'>Headphones</option>
-                    <option value='Wearables'>Wearables</option>
-                    <option value='Camera'>Camera</option>
-                    <option value='Home Appliances'>Home Appliances</option>
-                    <option value='Footwear'>Footwear</option>
-                    <option value='Speakers'>Speakers</option>
-                    <option value='Electronics'>Electronics</option>
-                    <option value='Gaming'>Gaming</option>
-                </select>
-            </div>
-
-            <div className={styles.formGroup}>
-                <label className={styles.label}>Price</label>
-                <input
-                    className={styles.input}
-                    type='number'
-                    value={formProduct.price}
-                    onChange={e =>
-                        setformProduct(prev => ({ ...prev, price: Number(e.target.value) }))
-                    }
-                />
-            </div>
-
-            <div className={styles.formGroup}>
-                <label className={styles.label}>Stock</label>
-                <input
-                    className={styles.input}
-                    type='number'
-                    value={formProduct.stock}
-                    onChange={e =>
-                        setformProduct(prev => ({ ...prev, stock: Number(e.target.value) }))
-                    }
-                />
-            </div>
-            
-            <div className={styles.formGroup}>
-                <label className={styles.label}>Status</label>
-                <div className={styles.radioGroup}>
-                    <label>
-                        <input
-                            type='radio'
-                            checked={formProduct.status === 'active'}
-                            onChange={() =>
-                                setformProduct(prev => ({ ...prev, status: 'active' }))
-                            }
-                        />
-                        Active
-                    </label>
-                    <label>
-                        <input
-                            type='radio'
-                            checked={formProduct.status === 'outOfStock'}
-                            onChange={() =>
-                                setformProduct(prev => ({ ...prev, status: 'outOfStock' }))
-                            }
-                        />
-                        Out of Stock
-                    </label>
-                    <label>
-                        <input
-                            type='radio'
-                            checked={formProduct.status === 'inactive'}
-                            onChange={() =>
-                                setformProduct(prev => ({ ...prev, status: 'inactive' }))
-                            }
-                        />
-                        Inactive
-                    </label>
+                <div className={styles.formGroup}>
+                    <label className={styles.label}>Name</label>
+                    <input
+                        className={styles.input}
+                        type='text'
+                        value={formProduct.name}
+                        onChange={e =>
+                            setformProduct(prev => ({ ...prev, name: e.target.value }))
+                        }
+                    />
                 </div>
-            </div>
 
-            <hr className={styles.divider} />
+                <div className={styles.formGroup}>
+                    <label className={styles.label}>Type</label>
+                    <select
+                        className={styles.input}
+                        value={formProduct.type}
+                        onChange={e =>
+                            setformProduct(prev => ({ ...prev, type: e.target.value as Product['type'] }))
+                        }
+                    >
+                        <option value=''>Select Type</option>
+                        <option value='Smartphones'>Smartphones</option>
+                        <option value='Laptops'>Laptops</option>
+                        <option value='Tablets'>Tablets</option>
+                        <option value='Accessories'>Accessories</option>
+                        <option value='Headphones'>Headphones</option>
+                        <option value='Wearables'>Wearables</option>
+                        <option value='Camera'>Camera</option>
+                        <option value='Home Appliances'>Home Appliances</option>
+                        <option value='Footwear'>Footwear</option>
+                        <option value='Speakers'>Speakers</option>
+                        <option value='Electronics'>Electronics</option>
+                        <option value='Gaming'>Gaming</option>
+                    </select>
+                </div>
 
-            <div className={styles.modalActions}>
-                <button
-                    className={styles.saveBtn}
-                    onClick={() => onSave(formProduct)}
-                >
-                    Save
-                </button>
-                <button
-                    className={styles.cancelBtn}
-                    onClick={onClose}
-                >
-                    Cancel
-                </button>
+                <div className={styles.formGroup}>
+                    <label className={styles.label}>Price</label>
+                    <input
+                        className={styles.input}
+                        type='number'
+                        value={formProduct.price}
+                        onChange={e =>
+                            setformProduct(prev => ({ ...prev, price: Number(e.target.value) }))
+                        }
+                    />
+                </div>
+
+                <div className={styles.formGroup}>
+                    <label className={styles.label}>Stock</label>
+                    <input
+                        className={styles.input}
+                        type='number'
+                        value={formProduct.stock}
+                        onChange={e =>
+                            setformProduct(prev => ({ ...prev, stock: Number(e.target.value) }))
+                        }
+                    />
+                </div>
+                
+                <div className={styles.formGroup}>
+                    <label className={styles.label}>Status</label>
+                    <div className={styles.radioGroup}>
+                        <label>
+                            <input
+                                type='radio'
+                                checked={formProduct.status === 'active'}
+                                onChange={() =>
+                                    setformProduct(prev => ({ ...prev, status: 'active' }))
+                                }
+                            />
+                            Active
+                        </label>
+                        <label>
+                            <input
+                                type='radio'
+                                checked={formProduct.status === 'outOfStock'}
+                                onChange={() =>
+                                    setformProduct(prev => ({ ...prev, status: 'outOfStock' }))
+                                }
+                            />
+                            Out of Stock
+                        </label>
+                        <label>
+                            <input
+                                type='radio'
+                                checked={formProduct.status === 'inactive'}
+                                onChange={() =>
+                                    setformProduct(prev => ({ ...prev, status: 'inactive' }))
+                                }
+                            />
+                            Inactive
+                        </label>
+                    </div>
+                </div>
+
+                <hr className={styles.divider} />
+
+                <div className={styles.modalActions}>
+                    <button
+                        className={styles.saveBtn}
+                        onClick={() => onSave(formProduct)}
+                    >
+                        Save
+                    </button>
+                    <button
+                        className={styles.cancelBtn}
+                        onClick={onClose}
+                    >
+                        Cancel
+                    </button>
+                </div>
             </div>
         </div>
     )

@@ -1,7 +1,7 @@
 import type { Dispatch, SetStateAction } from 'react'
 import type { Order } from '../../data/orders'
 import StatusFilter from './StatusFilter'
-import styles from '../../pages/orders/Orders.module.css'
+import styles from '../../styles/pages/controls.module.css'
 
 type OrdersControlsProps = {
     status: Order['status'] | 'all'

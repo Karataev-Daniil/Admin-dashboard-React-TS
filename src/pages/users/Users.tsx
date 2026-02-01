@@ -1,6 +1,7 @@
 import { useMemo, useState, useCallback } from 'react'
 import { useOutletContext } from 'react-router-dom';
-import styles from '../../pages/users/Users.module.css'
+import styles from '../../styles/pages/page.module.css'
+import commonStyles from '../../styles/pages/common.module.css'
 import UsersHeader from '../../components/Users/UsersHeader'
 import UsersControls from '../../components/Users/UsersControls'
 import UsersTable from '../../components/Users/UsersTable'

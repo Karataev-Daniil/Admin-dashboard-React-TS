@@ -1,4 +1,4 @@
-import styles from '../../pages/users/Users.module.css'
+import styles from '../../styles/pages/controls.module.css'
 import RoleFilter from './RoleFilter'
 import StatusFilter from './StatusFilter'
 import SortFilter from './SortFilter'

@@ -1,0 +1,48 @@
+/* controls - shared for all pages */
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 12px;
+}
+
+.filters {
+    display: flex;
+    gap: 12px;
+}
+
+.filter {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 8px;
+    border: 1px solid var(--gray_2);
+    border-radius: 6px;
+    background: #fff;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.filter span {
+    font-size: 13px;
+    color: var(--gray_-2);
+    white-space: nowrap;
+}
+
+.select {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--blue_0);
+    padding: 0;
+    cursor: pointer;
+}
+
+.addButton {
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: var(--blue_0);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}

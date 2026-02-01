@@ -1,4 +1,4 @@
-import styles from '../../pages/users/Users.module.css'
+import styles from '../../styles/pages/common.module.css'
 
 const UsersHeader = () => (
   <div className={styles.header}>

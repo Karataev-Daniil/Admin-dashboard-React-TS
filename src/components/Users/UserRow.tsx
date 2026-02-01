@@ -1,4 +1,4 @@
-import styles from '../../pages/users/Users.module.css'
+import styles from '../../styles/pages/table.module.css'
 import EditIcon from '../../assets/icons/edit.svg?react'
 import DeleteIcon from '../../assets/icons/delete.svg?react'
 import type { User } from '../../data/users'

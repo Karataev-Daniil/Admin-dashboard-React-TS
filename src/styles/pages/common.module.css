@@ -1,0 +1,12 @@
+/* Common styles for all pages */
+.title {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 12px 0;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid var(--gray_2);
+    margin-top: 8px;
+}

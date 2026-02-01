@@ -35,34 +35,37 @@ export type MainLayoutContext = {
   highlightedId: number | null;
 };
 
-function useLocalForage<T>(key: string, initialValue: T): UseLocalForageReturn<T> {
-  const [state, setState] = useState<T>(initialValue);
+function useLocalForage<T>(
+  key: string,
+  initialValue: T
+): UseLocalForageReturn<T> {
+  const [state, setState] = useState<T>(initialValue)
+  const [hydrated, setHydrated] = useState(false)
 
   useEffect(() => {
-    async function load() {
-      const saved = await localforage.getItem(key);
+    let mounted = true
 
-      if (saved !== null) {
-        if (Array.isArray(initialValue)) {
-          if (Array.isArray(saved)) {
-            setState(saved as T);
-          } else {
-            console.warn(`${key} is not array, fallback to initialValue`);
-            setState(initialValue);
-          }
-        } else {
-          setState(saved as T);
-        }
+    localforage.getItem<T>(key).then(value => {
+      if (!mounted) return
+
+      if (value !== null) {
+        setState(value)
       }
+
+      setHydrated(true)
+    })
+
+    return () => {
+      mounted = false
     }
-    load();
-  }, [key]);
+  }, [key])
 
   useEffect(() => {
-    localforage.setItem(key, state);
-  }, [key, state]);
+    if (!hydrated) return
+    localforage.setItem(key, state)
+  }, [key, state, hydrated])
 
-  return [state, setState];
+  return [state, setState]
 }
 
 const MainLayout = () => {
@@ -71,7 +74,12 @@ const MainLayout = () => {
   const [allOrders, setAllOrders] = useLocalForage<Order[]>('all-orders', mockOrders)
   const [highlightedId, setHighlightedId] = useState<number | null>(null);
 
-  const [currUser, setCurrUser] = useLocalForage<{ name: string; email: string; role: string } | null>('data-user', null);
+  const testUser = {
+    name: 'Test Bearer',
+    email: 'bearer@example.com',
+    role: 'admin',
+  };
+  const [currUser, setCurrUser] = useLocalForage<{ name: string; email: string; role: string } | null>('data-user', testUser);
 
   const [searchValue, setSearchValue] = useState('');
 
@@ -104,6 +112,7 @@ const MainLayout = () => {
           setCurrUser={setCurrUser}
           isOpen={isLoginOpen}
           onClose={closeLogin}
+          users={allUsers}
         />
 
         <main className={styles.main}>

@@ -1,4 +1,4 @@
-import styles from '../../pages/users/Users.module.css'
+import styles from '../../styles/pages/controls.module.css'
 import type { RoleControlsProps } from '../../data/users'
 
 const RoleFilter = ({ role, onRoleChange }: RoleControlsProps) => (

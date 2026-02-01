@@ -1,15 +1,21 @@
 import { useState, useEffect, type FormEvent } from 'react';
 import styles from './LoginModal.module.css';
 import CloseIcon from '../../assets/icons/close.svg?react'
-import mockUsers from '../../data/users';
+import type { User } from '../../data/users';
 
 type LoginModalProps = {
-  setCurrUser: React.Dispatch<React.SetStateAction<{ name: string; email: string, role: string } | null>>;
-  isOpen: boolean;
-  onClose: () => void;
+  setCurrUser: React.Dispatch<React.SetStateAction<{ name: string; email: string, role: string } | null>>
+  isOpen: boolean
+  onClose: () => void
+  users: User[]
 };
 
-function LoginModal({ setCurrUser, isOpen, onClose }: LoginModalProps) {
+function LoginModal({ 
+  setCurrUser, 
+  isOpen, 
+  onClose,
+  users,
+}: LoginModalProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -35,7 +41,7 @@ function LoginModal({ setCurrUser, isOpen, onClose }: LoginModalProps) {
     e.preventDefault();
 
     const trimmedEmail = email.trim().toLowerCase();
-    const user = mockUsers.find(u => u.email.toLowerCase() === trimmedEmail);
+    const user = users.find(u => u.email.toLowerCase() === trimmedEmail);
 
     if (!user) {
       setError('User not found');
@@ -44,6 +50,11 @@ function LoginModal({ setCurrUser, isOpen, onClose }: LoginModalProps) {
 
     if (user.password !== password) {
       setError('Invalid password');
+      return;
+    }
+
+    if (user.status === 'inactive') {
+      setError('Inactive user')
       return;
     }
 

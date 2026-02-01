@@ -1,4 +1,4 @@
-import styles from '../../pages/products/Products.module.css'
+import styles from '../../styles/pages/controls.module.css'
 import CategoryFilter from './CategoryFilter'
 import StockFilter from './StockFilter'
 import DateAddFilter from './DateAddFilter'
