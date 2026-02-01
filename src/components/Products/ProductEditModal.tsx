@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import styles from '../../styles/pages/modal.module.css';
-import commonStyles from '../../styles/pages/common.module.css';
 import CloseIcon from '../../assets/icons/close.svg?react'
 import type { Product } from '../../data/products';
 
