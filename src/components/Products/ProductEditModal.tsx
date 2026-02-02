@@ -53,7 +53,10 @@ const ProductEditModal = ({
 
     return (
         <div className={styles.overlay} onClick={onClose}>
-            <div className={styles.modal}>
+            <div 
+                className={styles.modal}
+                onClick={e => e.stopPropagation()}
+            >
                 <h1 className={styles.title}>
                     {isEditing ? 'Edit Product' : 'Add Product'}
                 </h1>

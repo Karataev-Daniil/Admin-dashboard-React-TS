@@ -1,9 +1,9 @@
 import type { Product } from '../../data/products'
 import styles from '../../styles/pages/summary.module.css';
 import ProductTotalIcon from '../../assets/icons/products-total.svg?react'
-import ProductsActiveIcon from '../../assets/icons/products-active.svg?react'
-import ProductsInactiveIcon from '../../assets/icons/products-inactive.svg?react'
-import ProductsOutOfStockIcon from '../../assets/icons/products-out-of-stock.svg?react'
+import ProductsActiveIcon from '../../assets/icons/status-active.svg?react'
+import ProductsInactiveIcon from '../../assets/icons/status-inactive.svg?react'
+import ProductsOutOfStockIcon from '../../assets/icons/status-out-of-stock.svg?react'
 
 type ProductsSummaryProps = {
     products: Product[]

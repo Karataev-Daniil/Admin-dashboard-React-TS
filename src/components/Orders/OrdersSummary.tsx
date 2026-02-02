@@ -1,8 +1,8 @@
 import type { Order } from '../../data/orders'
 import styles from '../../styles/pages/summary.module.css';
-import OrdersActiveIcon from '../../assets/icons/products-active.svg?react'
-import OrdersInactiveIcon from '../../assets/icons/products-inactive.svg?react'
-import OrdersOutOfStockIcon from '../../assets/icons/products-out-of-stock.svg?react'
+import OrdersActiveIcon from '../../assets/icons/status-active.svg?react'
+import OrdersInactiveIcon from '../../assets/icons/status-inactive.svg?react'
+import OrdersOutOfStockIcon from '../../assets/icons/status-out-of-stock.svg?react'
 import CartIcon from '../../assets/icons/cart.svg?react'
 
 type OrdersSummaryProp = {

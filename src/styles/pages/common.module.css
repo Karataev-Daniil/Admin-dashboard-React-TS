@@ -10,3 +10,197 @@
     border-top: 1px solid var(--gray_2);
     margin-top: 8px;
 }
+
+/* Recent Activity Section */
+.activityContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.activitySection {
+    background: var(--gray_6);
+    border-radius: 8px;
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.08),
+        0 4px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--gray_3);
+    overflow: hidden;
+}
+
+.sectionTitle {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 20px 0 16px 8px;
+    background-color: var(--gray_4);
+}
+
+.tableWrapper {
+    background: transparent;
+    border-radius: 0;
+    overflow: hidden;
+    border: none;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table tr {
+    border-bottom: 1px solid var(--gray_2);
+    width: 100%;
+}
+
+.table th,
+.table td {
+    padding: 12px;
+    text-align: left;
+    font-size: 13px;
+}
+
+.table thead {
+    background: transparent;
+    font-weight: 600;
+    color: var(--gray_-3);
+    background-color: var(--gray_4);
+    border-top: 1px solid var(--gray_2);
+    font-size: 12px;
+}
+
+.table thead tr {
+    border-bottom: 2px solid var(--gray_2);
+}
+
+.table tbody tr:hover {
+    background: var(--gray_5);
+}
+
+.table tfoot {
+    background-color: var(--gray_5);
+    border-top: 1px solid var(--gray_2);
+}
+
+.table tfoot td {
+    text-align: right;
+}
+
+.tableButton {
+    color: var(--blue_0);
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.tableButton:hover {
+    color: var(--blue_2)
+}
+
+/* Status Badge */
+.badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Product / order states */
+.active {
+    background: var(--green_0);
+    color: var(--green_5);
+}
+.completed {
+    background: var(--green_0);
+    color: var(--green_5);
+}
+.pending {
+    background: var(--yellow_0);
+    color: var(--yellow_5);
+}
+.canceled {
+    background: var(--red_0);
+    color: var(--red_5);
+}
+.outofstock {
+    background: var(--red_0);
+    color: var(--red_5);
+}
+.inactive {
+    background: var(--yellow_0);
+    color: var(--yellow_5);
+}
+
+/* User roles */
+.admin {
+    background: var(--blue_0);
+    color: var(--blue_5);
+}
+.viewer {
+    background: var(--gray_0);
+    color: var(--gray_5);
+}
+.manager {
+    background: var(--blue_-2);
+    color: var(--blue_5);
+}
+
+/* Text styles */
+.id {
+    font-weight: 600;
+    color: #333;
+}
+
+.name {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.infoText {
+    display: block;
+    font-size: 12px;
+    color: #777;
+}
+
+.price {
+    font-weight: 600;
+    color: #333;
+}
+
+.customer {
+    font-weight: 600;
+    color: #333;
+}
+
+.category {
+    font-size: 12px;
+    color: #777;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .activityContainer {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .activitySection {
+        padding: 16px;
+    }
+
+    .table th,
+    .table td {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .sectionTitle {
+        font-size: 14px;
+    }
+}
