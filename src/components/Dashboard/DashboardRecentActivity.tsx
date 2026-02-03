@@ -1,9 +1,11 @@
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, useNavigate } from 'react-router-dom';
 import { useMemo } from 'react';
 import styles from '../../styles/pages/common.module.css';
 import type { MainLayoutContext } from '../../layout/MainLayout'
 
 const DashboardRecentActivity = ({}) => {
+    const navigate = useNavigate();
+
     const { allOrders, allProducts } = useOutletContext<MainLayoutContext>()
 
     const recentProducts = useMemo(() => {
@@ -49,12 +51,19 @@ const DashboardRecentActivity = ({}) => {
                             ))}
                         </tbody>
                         <tfoot>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <button className={styles.tableButton}>View All</button>
-                            </td>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <button 
+                                        className={styles.tableButton}
+                                        onClick={() => navigate('/products')}
+                                    >
+                                        View All
+                                    </button>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
                 </div>
@@ -92,12 +101,19 @@ const DashboardRecentActivity = ({}) => {
                             ))}
                         </tbody>
                         <tfoot>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <button className={styles.tableButton}>View All</button>
-                            </td>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <button 
+                                        className={styles.tableButton}
+                                        onClick={() => navigate('/orders')}
+                                    >
+                                        View All
+                                    </button>
+                                </td>
+                            </tr>
                         </tfoot>
                     </table>
                 </div>

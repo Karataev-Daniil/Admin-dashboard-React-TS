@@ -21,12 +21,10 @@
     border-radius: 8px;
     padding: 8px 16px;
 }
-
 .modal .divider {
     margin-left: -16px;
     margin-right: -16px;
 }
-
 .modal .closeBtn {
     position: absolute;
     display: flex;
@@ -43,7 +41,6 @@
     cursor: pointer;
     color: var(--gray_-2);
 }
-
 .modal .closeBtn .icon {
     width: 20px;
     height: 20px;
@@ -56,13 +53,11 @@
     margin: 0 0 12px;
     align-items: center;
 }
-
 .formGroup label {
     font-size: 14px;
     font-weight: 500;
     color: var(--gray_-2);
 }
-
 .formGroup input[type='text'],
 .formGroup input[type='email'],
 .formGroup input[type='number'],
@@ -76,7 +71,6 @@
     width: 100%;
     box-sizing: border-box;
 }
-
 .formGroup input[type='text']:focus,
 .formGroup input[type='email']:focus,
 .formGroup input[type='number']:focus,
@@ -84,12 +78,10 @@
     border-color: var(--blue_5);
     box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
 }
-
 .radioGroup {
     display: flex;
     align-items: center;
 }
-
 .radioLabel {
     display: flex;
     align-items: center;
@@ -97,20 +89,17 @@
     margin-right: 16px;
     cursor: pointer;
 }
-
 .radioLabel input[type='radio'] {
     margin: 0 4px 0 0;
     width: 16px;
     height: 16px;
 }
-
 .modalActions {
     display: flex;
     justify-content: center;
     gap: 8px;
     margin: 8px 0 0;
 }
-
 .saveBtn {
     padding: 8px 12px;
     background-color: var(--blue_0);
@@ -122,11 +111,9 @@
     font-weight: 500;
     transition: background 0.2s;
 }
-
 .saveBtn:hover {
     background-color: var(--blue_-1);
 }
-
 .cancelBtn {
     padding: 8px 12px;
     background-color: var(--gray_5);
@@ -138,14 +125,12 @@
     font-weight: 500;
     transition: background 0.2s;
 }
-
 .cancelBtn:hover {
     background-color: var(--gray_4);
 }
 .modal {
     position: relative;
 }
-
 .searchResults {
     margin: -8px 0 12px 120px;
     border: 1px solid var(--gray_0);
@@ -154,17 +139,14 @@
     max-height: 150px;
     overflow-y: auto;
 }
-
 .searchItem {
     padding: 6px 8px;
     font-size: 14px;
     cursor: pointer;
 }
-
 .searchItem:hover {
     background: var(--gray_5);
 }
-
 .productsList {
     list-style: none;
     padding: 0;
@@ -178,7 +160,6 @@
     align-items: center;
     padding: 4px 0;
 }
-
 .productsList button {
     background: transparent;
     border: none;

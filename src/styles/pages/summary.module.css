@@ -3,9 +3,8 @@
     display: flex;
     gap: 16px;
     justify-content: space-between;
-    margin: 12px 0 20px 0;
+    margin: 12px 0 24px 0;
 }
-
 .summaryCard {
     background-color: var(--gray_6);
     border-radius: 8px;
@@ -27,14 +26,12 @@
     height: 32px;
     margin-bottom: 10px;
 }
-
 .count {
     font-size: 24px;
     font-weight: 600;
     margin: 0;
     color: #333;
 }
-
 .label {
     font-size: 14px;
     color: #777;
@@ -46,15 +43,12 @@
     background-color: var(--blue_0);
     color: var(--gray_-6);
 }
-
 .totalCard .count {
     color: var(--gray_6);
 }
-
 .totalCard .label {
     color: var(--gray_2);
 }
-
 .totalCard .icon {
     color: var(--gray_6);
 }
@@ -63,15 +57,12 @@
 .activeCard {
     background-color: var(--green_4);
 }
-
 .activeCard .count {
     color: var(--green_1);
 }
-
 .activeCard .label {
     color: var(--gray_-1);
 }
-
 .activeCard .icon {
     color: var(--green_0);
 }
@@ -80,15 +71,12 @@
 .inactiveCard {
     color: var(--yellow_4);
 }
-
 .inactiveCard .count {
     color: var(--yellow_1);
 }
-
 .inactiveCard .label {
     color: var(--gray_-1);
 }
-
 .inactiveCard .icon {
     color: var(--yellow_0);
 }
@@ -97,15 +85,12 @@
 .outOfStockCard {
     background-color: var(--red_4);
 }
-
 .outOfStockCard .count {
     color: var(--red_1);
 }
-
 .outOfStockCard .label {
     color: var(--gray_-1);
 }
-
 .outOfStockCard .icon {
     color: var(--red_0);
 }

@@ -2,7 +2,6 @@ import styles from '../../styles/pages/summary.module.css';
 import ProductTotalIcon from '../../assets/icons/products-total.svg?react'
 import UsersTotalIcon from '../../assets/icons/users-total.svg?react'
 import OrdersTotalIcon from '../../assets/icons/cart.svg?react'
-import { useCallback, useMemo, useState } from 'react'
 import { useOutletContext } from 'react-router-dom';
 import type { MainLayoutContext } from '../../layout/MainLayout'
 

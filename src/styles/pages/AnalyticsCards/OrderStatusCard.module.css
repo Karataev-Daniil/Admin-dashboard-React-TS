@@ -1,0 +1,90 @@
+/* Order Status Card Styles */
+.card {
+    background: var(--gray_6);
+    border-radius: 8px;
+    padding: 24px 16px;
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.08),
+        0 4px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--gray_3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    gap: 20px;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--green_4);
+    padding: 24px 16px;
+    margin: -24px -16px -12px;
+    gap: 12px;
+}
+.title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--gray_-4);
+    margin: 0;
+    letter-spacing: -0.3px;
+}
+.chartContainer {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.pieChart {
+    width: 180px;
+    height: 180px;
+    position: relative;
+}
+.centerText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    font-weight: 700;
+    pointer-events: none;
+    color: var(--gray_-6);
+}
+
+.statusItem {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.statusList {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 24px;
+    flex-direction: column;
+}
+.statusItem.Completed b {
+    background-color: var(--green_1);
+}
+.statusItem.Pending b {
+    background-color: var(--yellow_1);
+}
+.statusItem.Cancelled b {
+    background-color: var(--red_1);
+}
+.statusName {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 400;
+}
+.statusName b {
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: black;
+}
+.statusValue {
+    font-weight: 600;
+}

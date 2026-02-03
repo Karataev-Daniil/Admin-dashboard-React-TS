@@ -103,15 +103,14 @@
     color: var(--gray_-2);
 }
 
-/* badges */
+/* badges - unified with common styles */
 .badge {
     padding: 4px 8px;
     border-radius: 6px;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
-/* User roles */
 .badge.admin {
     background: var(--blue_0);
     color: var(--blue_5);
@@ -125,7 +124,6 @@
     color: var(--blue_5);
 }
 
-/* Order */
 .badge.completed {
     background: var(--green_0);
     color: var(--green_5);
@@ -139,7 +137,6 @@
     color: var(--red_5);
 }
 
-/* Product  */
 .badge.active {
     background: var(--green_0);
     color: var(--green_5);
@@ -149,7 +146,7 @@
     color: var(--red_5);
 }
 .badge.inactive {
-    background-color: var(--yellow_0);
+    background: var(--yellow_0);
     color: var(--yellow_5);
 }
 
@@ -159,7 +156,6 @@
     align-items: center;
     gap: 8px;
 }
-
 .actionBtn {
     display: flex;
     align-items: center;
@@ -172,12 +168,10 @@
     cursor: pointer;
     transition: border-color 0.1s ease-out, color 0.1s ease-out;
 }
-
 .actionBtn:hover {
     color: var(--blue_0);
     border-color: var(--blue_0);
 }
-
 .actionBtn svg {
     width: 16px;
     height: 16px;
@@ -190,7 +184,6 @@
 .highlight {
     animation: highlightBlink 5s infinite;
 }
-
 @keyframes highlightBlink {
     0%, 100% { background-color: transparent; }
     50% { background-color: var(--yellow_0); }

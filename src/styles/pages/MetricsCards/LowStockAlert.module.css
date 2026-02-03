@@ -1,0 +1,36 @@
+.title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: 600;
+}
+.info {
+    margin-top: 6px;
+    font-size: 14px;
+    color: var(--gray_-1);
+}
+.button {
+    margin: 14px 0 0;
+    color: var(--blue_0);
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.icon {
+    width: 32px;
+    height: 32px;
+}
+
+.iconNormal {
+    color: var(--green_0);
+}
+.iconWarning {
+    color: var(--yellow_0);
+}
+.iconDanger {
+    color: var(--red_0);
+}
