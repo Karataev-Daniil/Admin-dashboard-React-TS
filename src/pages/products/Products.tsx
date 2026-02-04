@@ -1,11 +1,11 @@
 import { useCallback, useMemo, useState } from 'react'
 import { useOutletContext } from 'react-router-dom';
-import ProductsHeader from '../../components/products/ProductsHeader'
-import ProductsControls from '../../components/products/ProductsControls'
-import ProductsTable from '../../components/products/ProductsTable'
-import ProductsPagination from '../../components/products/ProductsPagination'
-import ProductEditModal from '../../components/products/ProductEditModal'
-import ProductsSummary from '../../components/products/ProductsSummary'
+import ProductsHeader from '../../components/Products/ProductsHeader'
+import ProductsControls from '../../components/Products/ProductsControls'
+import ProductsTable from '../../components/Products/ProductsTable'
+import ProductsPagination from '../../components/Products/ProductsPagination'
+import ProductEditModal from '../../components/Products/ProductEditModal'
+import ProductsSummary from '../../components/Products/ProductsSummary'
 import styles from '../../styles/pages/page.module.css'
 import type { CategoryProps, StockProps, DateAddProps, StatusProps, Product } from '../../data/products'
 import type { MainLayoutContext } from '../../layout/MainLayout'
@@ -79,6 +79,7 @@ const Products = () => {
       }
     })
     productsModalClose()
+    setCurrentPage(1)
   }, [])
 
   return (

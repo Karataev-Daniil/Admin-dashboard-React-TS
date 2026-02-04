@@ -74,11 +74,7 @@ const MainLayout = () => {
   const [allOrders, setAllOrders] = useLocalForage<Order[]>('all-orders', mockOrders)
   const [highlightedId, setHighlightedId] = useState<number | null>(null);
 
-  const testUser = {
-    name: 'Test Bearer',
-    email: 'bearer@example.com',
-    role: 'admin',
-  };
+  const testUser = { name: 'Test Bearer', email: 'bearer@example.com', role: 'admin', };
   const [currUser, setCurrUser] = useLocalForage<{ name: string; email: string; role: string } | null>('data-user', testUser);
 
   const [searchValue, setSearchValue] = useState('');

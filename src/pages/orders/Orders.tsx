@@ -94,6 +94,7 @@ const Orders = () => {
             }
         })
         orderModalClose()
+        setCurrentPage(1)
     }, [setAllProducts, setAllOrders, allOrders])
 
     return (

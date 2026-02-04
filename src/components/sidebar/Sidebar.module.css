@@ -20,12 +20,17 @@
 .logo {
     width: 36px;
     height: auto;
+    cursor: pointer;
 }
-
 .title {
     font-size: 16px;
-    color: var(--color-text);
+    color: var(--blue_-6);
     font-weight: 600;
+    cursor: pointer;
+}
+.logo:hover,
+.title:hover {
+    color: var(--blue_3);
 }
 
 .menu {

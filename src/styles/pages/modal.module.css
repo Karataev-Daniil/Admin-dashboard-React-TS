@@ -61,6 +61,7 @@
 .formGroup input[type='text'],
 .formGroup input[type='email'],
 .formGroup input[type='number'],
+.formGroup input[type='password'],
 .formGroup select {
     padding: 6px 8px;
     font-size: 14px;
@@ -74,6 +75,7 @@
 .formGroup input[type='text']:focus,
 .formGroup input[type='email']:focus,
 .formGroup input[type='number']:focus,
+.formGroup input[type='password']:focus,
 .formGroup select:focus {
     border-color: var(--blue_5);
     box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
