@@ -1,66 +1,142 @@
-# Admin Dashboard
+# ProductDash
 
-Admin dashboard pet project built with **React** and **TypeScript**.  
-The project simulates an admin panel for managing users, products, and orders in an e-commerce–like system.
+**ProductDash** — учебная админ-панель для управления товарами, заказами и пользователями.
+Проект имитирует реальный dashboard с аналитикой, фильтрами, редактированием данных и адаптивной вёрсткой.
 
-⚠️ The project is currently **in development**.
+Сделан с упором на архитектуру **React**-приложения, типобезопасность и аккуратный UI.
 
----
+## Описание
 
-## Features
+Проект создан для практики типичных задач фронтенд-разработчика:
+работа с таблицами, состоянием приложения, маршрутизацией и пользовательским интерфейсом.
 
-### Implemented
-- Dashboard layout and navigation
-- Users page:
-  - View list of users
-  - Basic user data display
-- Products page:
-  - Partial implementation
-  - Product list UI is implemented
-- Responsive admin layout
-- Modular component structure
+**Бэкенд не используется** — данные хранятся локально. Это позволяет сфокусироваться на фронтенде, структуре кода и взаимодействии компонентов.
 
-### In Progress
-- Orders page
-- Authentication / account login
-- Full product management functionality
+## Основные возможности
 
----
+### Dashboard
 
-## Tech Stack
+- Карточки с ключевыми метриками
+- Статусы заказов
+- Распределение продаж по категориям
+- Уровень запасов
+- Недавняя активность
 
-- React
-- TypeScript
-- React Router
-- CSS / styling solution used in the project
-- (Add other libraries if applicable)
+### Товары
 
----
+- Просмотр каталога
+- Фильтрация по категориям, статусу и запасам
+- Редактирование товаров
+- Пагинация
 
-This project was created as a pet project to practice:
+### Заказы
 
-Building an admin dashboard UI
+- Список заказов
+- Фильтрация по статусу
+- Изменение статуса заказа
+- Пагинация
 
-Structuring a React + TypeScript application
+### Пользователи
 
-Working with reusable components and routing
+- Список пользователей
+- Фильтрация по роли и статусу
+- Сортировка
+- Редактирование профилей
 
-Simulating real-world admin panel functionality
+### Интерфейс
 
-Status
-🛠️ In development
+- Полностью адаптивный дизайн
+- Отзывчивая навигация
+- Единая система стилей
 
-Planned features:
-Orders management page
+## Технологии
 
-Authentication and account-based access
+| Технология | Версия |
+|-----------|--------|
+| **React** | 18 |
+| **TypeScript** | - |
+| **Vite** | - |
+| **React Router** | - |
+| **CSS Modules** | - |
+| **LocalForage** | - |
+| **ESLint** | - |
 
-Completing products page logic
+## Установка и запуск
 
-Improving UI and UX
-
-Possible backend or API integration
-
-Getting Started
+```bash
+git clone https://github.com/yourusername/productdash.git
+cd productdash
 npm install
+```
+
+### Режим разработки
+
+```bash
 npm run dev
+```
+
+Откройте `http://localhost:5173` в браузере.
+
+## Архитектура
+
+**Глобальное состояние** реализовано через **React Context API**.
+Данные (товары, заказы, пользователи) сохраняются в локальном хранилище с помощью **LocalForage**.
+
+Проект разбит на функциональные модули, без перегруженных компонентов.
+
+## Типы данных
+
+### Order
+
+```typescript
+interface Order {
+  id: string
+  productId: string
+  quantity: number
+  price: number
+  status: 'pending' | 'processing' | 'completed' | 'cancelled'
+  date: string
+  customer: string
+}
+```
+
+### Product
+
+```typescript
+interface Product {
+  id: string
+  name: string
+  type: string
+  stock: number
+  price: number
+  status: 'active' | 'inactive'
+  dateAdded: string
+}
+```
+
+### User
+
+```typescript
+interface User {
+  id: string
+  name: string
+  email: string
+  role: 'admin' | 'manager' | 'user'
+  status: 'active' | 'inactive'
+  dateAdded: string
+}
+```
+
+## Цель проекта
+
+- Практика построения админ-панелей
+- Архитектура **React**-приложений
+- Работа с состоянием и маршрутизацией
+- Типобезопасность с **TypeScript**
+- Инкапсулированные стили и единый UI
+
+## Контакты
+
+**GitHub**: https://github.com/Karataev-Daniil
+
+**Email**: dirings52445@gmail.com
