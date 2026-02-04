@@ -6,10 +6,12 @@ import styles from '../../styles/pages/controls.module.css'
 type OrdersControlsProps = {
     status: Order['status'] | 'all'
     onStatusChange: Dispatch<SetStateAction<Order['status'] | 'all'>>
+    onEdit: () => void
 }
 const OrdersControls = ({
     status,
-    onStatusChange
+    onStatusChange,
+    onEdit
 }: OrdersControlsProps) => {
 
     return (
@@ -20,6 +22,12 @@ const OrdersControls = ({
                     onStatusChange={onStatusChange}
                 />
             </div>
+            <button 
+                className={styles.addButton}
+                onClick={() => onEdit()}
+            >
+                Add Order
+            </button>
         </div>
     )
 }

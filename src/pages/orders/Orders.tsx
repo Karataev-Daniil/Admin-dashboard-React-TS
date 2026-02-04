@@ -12,7 +12,7 @@ import type { MainLayoutContext } from '../../layout/MainLayout'
 
 
 const Orders = () => {
-    const { useLocalForage, allOrders, setAllOrders, highlightedId } = useOutletContext<MainLayoutContext>()
+    const { useLocalForage, allOrders, setAllOrders, setAllProducts, highlightedId } = useOutletContext<MainLayoutContext>()
     const [currentPage, setCurrentPage] = useState(1)
     const [visibleCount] = useState(10)
 
@@ -57,6 +57,26 @@ const Orders = () => {
     }, [])
 
     const orderModalHandleSave = useCallback((formOrder: Order) => {
+        const oldOrder = allOrders.find(o => o.id === formOrder.id)
+        const notCompleted = oldOrder?.status !== 'completed'
+        const nowCompleted = formOrder.status === 'completed'
+
+        if (notCompleted && nowCompleted && formOrder.products.length > 0) {
+            setAllProducts(prevProducts => (
+                prevProducts.map(product => {
+                    const orderProduct = formOrder.products.find((p) => p.id === product.id)
+
+                    if (!orderProduct) return product
+
+                    return {
+                        ...product,
+                        stock: product.stock - 1
+                        
+                    }
+                })
+            ))
+        }
+
         setAllOrders(prev => {
             const findIndex = prev.findIndex(p => p.id === formOrder.id)
             if (findIndex >= 0) {
@@ -68,7 +88,7 @@ const Orders = () => {
             }
         })
         orderModalClose()
-    }, [])
+    }, [setAllProducts, setAllOrders, allOrders])
 
     return (
         <div className={styles.page}>
@@ -79,6 +99,7 @@ const Orders = () => {
             <OrdersControls 
                 status={currStatus}
                 onStatusChange={setCurrStatus}
+                onEdit={handleEditOrder}
             />
             <OrdersTable 
                 Orders={paginatedOrders}
