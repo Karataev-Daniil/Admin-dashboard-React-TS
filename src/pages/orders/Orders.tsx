@@ -56,6 +56,12 @@ const Orders = () => {
         setOrderModalState(false)
     }, [])
 
+    const orderHandleDelete = useCallback((orderID: Order['id']) => {
+        setAllOrders(prevOrders => (
+            prevOrders.filter(o => o.id !== orderID)
+        ))
+    }, [])
+
     const orderModalHandleSave = useCallback((formOrder: Order) => {
         const oldOrder = allOrders.find(o => o.id === formOrder.id)
         const notCompleted = oldOrder?.status !== 'completed'
@@ -103,7 +109,7 @@ const Orders = () => {
             />
             <OrdersTable 
                 Orders={paginatedOrders}
-                onDelete={() => {}}
+                onDelete={orderHandleDelete}
                 highlightedId={highlightedId}
                 onEdit={handleEditOrder}
             />
