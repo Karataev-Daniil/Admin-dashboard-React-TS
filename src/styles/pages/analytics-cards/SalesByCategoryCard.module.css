@@ -53,7 +53,7 @@
 }
 .bar {
   height: 20px;
-  background: #f1f3f5;
+  background: var(--gray_4);
   border-radius: 6px;
   overflow: hidden;
 }

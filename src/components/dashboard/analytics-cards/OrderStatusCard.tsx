@@ -1,5 +1,5 @@
 import { Chart } from "react-google-charts";
-import styles from "../../../styles/pages/AnalyticsCards/OrderStatusCard.module.css";
+import styles from "../../../styles/pages/analytics-cards/OrderStatusCard.module.css";
 import type { MainLayoutContext } from '../../../layout/MainLayout'
 import { useOutletContext } from 'react-router-dom';
 

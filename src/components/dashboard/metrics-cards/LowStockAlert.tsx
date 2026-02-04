@@ -1,7 +1,7 @@
 import type { MainLayoutContext } from '../../../layout/MainLayout'
 import { useOutletContext, useNavigate } from 'react-router-dom'
 import StockProducts from '../../../assets/icons/status-out-of-stock.svg?react'
-import styles from '../../../styles/pages/MetricsCards/LowStockAlert.module.css'
+import styles from '../../../styles/pages/metrics-cards/LowStockAlert.module.css'
 
 const LowStockAlert = () => {
     const navigate = useNavigate()

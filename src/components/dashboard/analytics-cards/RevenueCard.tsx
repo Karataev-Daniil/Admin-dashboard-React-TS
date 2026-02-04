@@ -1,6 +1,6 @@
 import { Chart } from 'react-google-charts';
 import { useState, useMemo } from 'react';
-import styles from '../../../styles/pages/AnalyticsCards/RevenueCard.module.css';
+import styles from '../../../styles/pages/analytics-cards/RevenueCard.module.css';
 import type { MainLayoutContext } from '../../../layout/MainLayout'
 import { useOutletContext } from 'react-router-dom';
 

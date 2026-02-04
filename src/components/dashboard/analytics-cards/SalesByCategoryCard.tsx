@@ -1,4 +1,4 @@
-import styles from '../../../styles/pages/AnalyticsCards/SalesByCategoryCard.module.css';
+import styles from '../../../styles/pages/analytics-cards/SalesByCategoryCard.module.css';
 import type { MainLayoutContext } from '../../../layout/MainLayout';
 import { useOutletContext } from 'react-router-dom';
 import { useMemo } from 'react';
