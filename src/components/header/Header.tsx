@@ -19,6 +19,7 @@ type HeaderProps = {
   setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
   setOrders: React.Dispatch<React.SetStateAction<Order[]>>;
   setHighlightedId: React.Dispatch<React.SetStateAction<number | null>>;
+  onMenuToggle: () => void;
 };
 
 const Header = ({
@@ -33,6 +34,7 @@ const Header = ({
   setProducts,
   setOrders,
   setHighlightedId,
+  onMenuToggle,
 }: HeaderProps) => {
   const location = useLocation();
 
@@ -97,6 +99,15 @@ const Header = ({
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
+        <button
+          className={styles.hamburger}
+          onClick={onMenuToggle}
+          type="button"
+          aria-label="Toggle menu"
+        >
+          ☰
+        </button>
+        
         <div className={styles.search}>
           <div className={styles.searchInputWrapper}>
             <input

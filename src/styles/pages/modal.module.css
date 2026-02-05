@@ -7,6 +7,7 @@
     align-items: center;
     justify-content: center;
     z-index: 1000;
+    padding: 16px;
 }
 
 .title {
@@ -20,6 +21,8 @@
     background-color: var(--gray_6);
     border-radius: 8px;
     padding: 8px 16px;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 .modal .divider {
     margin-left: -16px;
@@ -40,6 +43,8 @@
     border: none;
     cursor: pointer;
     color: var(--gray_-2);
+    min-width: 40px;
+    min-height: 40px;
 }
 .modal .closeBtn .icon {
     width: 20px;
@@ -52,6 +57,7 @@
     grid-template-columns: 120px 1fr;
     margin: 0 0 12px;
     align-items: center;
+    gap: 12px;
 }
 .formGroup label {
     font-size: 14px;
@@ -63,7 +69,7 @@
 .formGroup input[type='number'],
 .formGroup input[type='password'],
 .formGroup select {
-    padding: 6px 8px;
+    padding: 8px 8px;
     font-size: 14px;
     border: 1px solid var(--gray_0);
     color: var(--gray_-5);
@@ -71,6 +77,7 @@
     outline: none;
     width: 100%;
     box-sizing: border-box;
+    min-height: 36px;
 }
 .formGroup input[type='text']:focus,
 .formGroup input[type='email']:focus,
@@ -83,24 +90,27 @@
 .radioGroup {
     display: flex;
     align-items: center;
+    gap: 16px;
 }
 .radioLabel {
     display: flex;
     align-items: center;
     font-size: 14px;
-    margin-right: 16px;
     cursor: pointer;
+    min-height: 36px;
 }
 .radioLabel input[type='radio'] {
     margin: 0 4px 0 0;
     width: 16px;
     height: 16px;
+    cursor: pointer;
 }
 .modalActions {
     display: flex;
     justify-content: center;
     gap: 8px;
     margin: 8px 0 0;
+    flex-wrap: wrap;
 }
 .saveBtn {
     padding: 8px 12px;
@@ -112,6 +122,9 @@
     font-size: 14px;
     font-weight: 500;
     transition: background 0.2s;
+    min-height: 36px;
+    flex: 1;
+    min-width: 100px;
 }
 .saveBtn:hover {
     background-color: var(--blue_-1);
@@ -126,6 +139,9 @@
     font-size: 14px;
     font-weight: 500;
     transition: background 0.2s;
+    min-height: 36px;
+    flex: 1;
+    min-width: 100px;
 }
 .cancelBtn:hover {
     background-color: var(--gray_4);
@@ -145,6 +161,9 @@
     padding: 6px 8px;
     font-size: 14px;
     cursor: pointer;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
 }
 .searchItem:hover {
     background: var(--gray_5);
@@ -161,6 +180,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 4px 0;
+    min-height: 36px;
 }
 .productsList button {
     background: transparent;
@@ -168,4 +188,75 @@
     font-size: 16px;
     cursor: pointer;
     color: var(--gray_-3);
+    padding: 4px;
+    min-width: 32px;
+    min-height: 32px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .modal {
+        width: 100%;
+        max-width: 500px;
+    }
+    
+    .formGroup {
+        grid-template-columns: 100px 1fr;
+    }
+    
+    .searchResults {
+        margin-left: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .overlay {
+        padding: 12px;
+    }
+    
+    .modal {
+        width: 100%;
+        padding: 8px 12px;
+    }
+    
+    .formGroup {
+        grid-template-columns: 1fr;
+        margin-bottom: 10px;
+    }
+    
+    .formGroup label {
+        font-size: 13px;
+    }
+    
+    .formGroup input[type='text'],
+    .formGroup input[type='email'],
+    .formGroup input[type='number'],
+    .formGroup input[type='password'],
+    .formGroup select {
+        font-size: 16px;
+    }
+    
+    .title {
+        font-size: 18px;
+    }
+    
+    .searchResults {
+        margin-left: 0;
+    }
+    
+    .radioGroup {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .modalActions {
+        flex-direction: column;
+    }
+    
+    .saveBtn,
+    .cancelBtn {
+        width: 100%;
+        flex: unset;
+    }
 }

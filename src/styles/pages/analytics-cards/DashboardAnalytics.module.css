@@ -3,3 +3,24 @@
     grid-template-columns: 1fr 1fr 1fr;
     gap: 16px;
 }
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .dashboardAnalytics {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboardAnalytics {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboardAnalytics {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+}

@@ -39,8 +39,9 @@
 .tableWrapper {
     background: transparent;
     border-radius: 0;
-    overflow: hidden;
+    overflow: auto;
     border: none;
+    -webkit-overflow-scrolling: touch;
 }
 
 .table {
@@ -93,6 +94,9 @@
     font-size: 13px;
     font-weight: 600;
     transition: color 0.2s ease;
+    padding: 6px 12px;
+    background: none;
+    min-height: 36px;
 }
 
 .tableButton:hover {
@@ -189,18 +193,45 @@
     }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
     .activitySection {
-        padding: 16px;
+        border-radius: 4px;
     }
-
     .table th,
     .table td {
-        padding: 8px;
+        padding: 10px 8px;
         font-size: 12px;
     }
-
     .sectionTitle {
         font-size: 14px;
+        padding: 16px 0 12px 8px;
+    }
+    .tableButton {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 18px;
+        margin: 8px 0;
+    }
+    .activityContainer {
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+    .table th,
+    .table td {
+        padding: 8px 6px;
+        font-size: 11px;
+    }
+    .sectionTitle {
+        font-size: 13px;
+        padding: 12px 0 8px 6px;
+    }
+    .tableButton {
+        font-size: 11px;
+        padding: 3px 6px;
     }
 }

@@ -17,3 +17,44 @@
 .dashboardMetrics > *:not(:nth-child(1)) {
   border-left: 1px solid var(--gray_3);
 }
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .dashboardMetrics {
+        grid-template-columns: 1fr 1fr;
+        padding: 16px;
+    }
+    
+    .dashboardMetrics > *:nth-child(odd):not(:nth-child(1)) {
+        border-left: 1px solid var(--gray_3);
+    }
+    
+    .dashboardMetrics > *:nth-child(even) {
+        border-left: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboardMetrics {
+        grid-template-columns: 1fr;
+        margin-top: 16px;
+        padding: 12px;
+    }
+    
+    .dashboardMetrics > *:not(:nth-child(1)) {
+        border-left: none;
+        border-top: 1px solid var(--gray_3);
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboardMetrics {
+        margin-top: 12px;
+        padding: 8px;
+    }
+    
+    .dashboardMetrics > * {
+        padding: 12px 8px;
+    }
+}

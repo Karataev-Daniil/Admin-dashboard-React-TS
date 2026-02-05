@@ -12,7 +12,15 @@
     justify-content: space-between;
     overflow: hidden;
     gap: 20px;
+    transition: box-shadow 0.2s ease;
 }
+
+.card:hover {
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.12),
+        0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -21,6 +29,7 @@
     padding: 24px 16px;
     margin: -24px -16px -12px;
     gap: 12px;
+    flex-wrap: wrap;
 }
 .title {
     font-size: 18px;
@@ -33,6 +42,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 16px;
 }
 .pieChart {
     width: 180px;
@@ -55,6 +65,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    min-height: 32px;
 }
 .statusList {
     display: flex;
@@ -87,4 +98,50 @@
 }
 .statusValue {
     font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .card {
+        padding: 16px 12px;
+        gap: 16px;
+    }
+    .header {
+        padding: 16px 12px;
+        margin: -16px -12px -8px;
+    }
+    .title {
+        font-size: 16px;
+    }
+    .pieChart {
+        width: 200px;
+        height: 200px;
+    }
+    .centerText {
+        font-size: 20px;
+    }
+    .statusList {
+        gap: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 12px 8px;
+        gap: 12px;
+    }
+    .header {
+        padding: 12px 8px;
+        margin: -12px -8px -6px;
+    }
+    .title {
+        font-size: 14px;
+    }
+    .pieChart {
+        width: 120px;
+        height: 120px;
+    }
+    .centerText {
+        font-size: 16px;
+    }
 }

@@ -2,6 +2,9 @@
     background-color: var(--gray_6);
     border-bottom: 2px solid var(--gray_1);
     height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
 }
 .inner {
     display: flex;
@@ -9,8 +12,26 @@
     justify-content: space-between;
     height: 100%;
     margin: 0 12px;
+    gap: 12px;
 }
 
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    color: var(--gray_-3);
+    font-size: 24px;
+    min-width: 40px;
+    min-height: 40px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.hamburger:hover {
+    background-color: var(--gray_4);
+}
 
 .search {
     display: flex;
@@ -18,6 +39,8 @@
     position: relative;
     color: var(--gray_-2);
     gap: 8px;
+    flex: 1;
+    max-width: 400px;
 }
 .search > svg {
     position: absolute;
@@ -29,15 +52,17 @@
 
 .searchInputWrapper {
     position: relative;
+    width: 100%;
 }
 .searchInput {
     height: 28px;
-    width: 300px;
+    width: 100%;
     background-color: var(--gray_4);
     border: 1px solid var(--gray_2);
     font-weight: 500;
     padding: 0 8px 0 28px;
     border-radius: 4px;
+    box-sizing: border-box;
 }
 .clearButton {
     position: absolute;
@@ -45,6 +70,10 @@
     top: 50%;
     transform: translateY(-50%);
     color: var(--gray_-6);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
 }
 .clearButton:hover {
     color: var(--blue_0);
@@ -89,6 +118,7 @@
   gap: 8px;
   cursor: pointer;
   transition: background-color 0.2s;
+  min-height: 40px;
 }
 .searchItem:hover {
   background-color: var(--gray_5);
@@ -105,10 +135,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 .searchName {
   font-size: 14px;
   font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 
@@ -117,6 +151,7 @@
     align-items: center;
     gap: 8px;
     cursor: pointer;
+    white-space: nowrap;
 }
 .user:hover .avatar {
     background-color: var(--gray_2);
@@ -136,9 +171,47 @@
     font-weight: 700;
     border-radius: 50%;
     transition: background-color 0.3s ease, color 0.3s ease;
+    flex-shrink: 0;
 }
 .username {
     font-weight: 500;
     color: var(--blue_-4);
     transition: color 0.3s ease;
+}
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+    .search {
+        max-width: 250px;
+    }
+    .username {
+        display: none;
+    }
+    .inner {
+        margin: 0 8px;
+        gap: 8px;
+    }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+    .search {
+        max-width: 100%;
+        flex: 1;
+    }
+    .searchInput {
+        height: 32px;
+        font-size: 16px;
+    }
+    .avatar {
+        width: 28px;
+        height: 28px;
+    }
+    .inner {
+        margin: 0 6px;
+        gap: 6px;
+    }
 }

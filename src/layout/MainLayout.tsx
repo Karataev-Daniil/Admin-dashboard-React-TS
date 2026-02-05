@@ -80,14 +80,17 @@ const MainLayout = () => {
   const [searchValue, setSearchValue] = useState('');
 
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const openLogin = () => setIsLoginOpen(true);
 
   const closeLogin = () => setIsLoginOpen(false);
+  
+  const toggleSidebar = () => setIsSidebarOpen(prev => !prev);
 
   return (
     <div className={styles.layout}>
-      <Sidebar />
+      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
       <div className={styles.content}>
         <Header
@@ -102,6 +105,7 @@ const MainLayout = () => {
           setProducts={setAllProducts}
           setOrders={setAllOrders}
           setHighlightedId={setHighlightedId}
+          onMenuToggle={toggleSidebar}
         />
 
         <LoginModal

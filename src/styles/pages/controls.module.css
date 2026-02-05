@@ -4,11 +4,14 @@
     justify-content: space-between;
     align-items: center;
     margin: 0 0 12px;
+    flex-wrap: wrap;
+    gap: 12px;
 }
 
 .filters {
     display: flex;
     gap: 12px;
+    flex-wrap: wrap;
 }
 
 .filter {
@@ -21,6 +24,7 @@
     background: #fff;
     font-size: 12px;
     font-weight: 700;
+    min-height: 36px;
 }
 
 .filter span {
@@ -36,6 +40,7 @@
     color: var(--blue_0);
     padding: 0;
     cursor: pointer;
+    font-size: 13px;
 }
 
 .addButton {
@@ -45,4 +50,61 @@
     color: #fff;
     border: none;
     cursor: pointer;
+    min-height: 36px;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.addButton:hover {
+    background: var(--blue_1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .controls {
+        margin: 0 0 8px;
+        gap: 8px;
+    }
+
+    .filters {
+        gap: 8px;
+    }
+
+    .filter {
+        padding: 4px 6px;
+        font-size: 11px;
+        min-height: 32px;
+    }
+
+    .addButton {
+        padding: 6px 12px;
+        font-size: 12px;
+        min-height: 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+        margin: 0 0 8px;
+    }
+
+    .filters {
+        width: 100%;
+    }
+
+    .filter {
+        flex: 1;
+        justify-content: center;
+        padding: 6px 4px;
+        font-size: 10px;
+        min-height: 36px;
+    }
+
+    .addButton {
+        width: 100%;
+        padding: 8px 10px;
+        font-size: 12px;
+    }
 }

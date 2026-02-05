@@ -8,7 +8,8 @@
     border-top: 1px solid transparent;
     background-color: var(--gray_6);
     border-radius: 0 0 4px 4px;
-    padding: 24px 0;
+    padding: 24px 8px;
+    flex-wrap: wrap;
 }
 .pagination button {
     color: var(--gray_-4);
@@ -16,9 +17,17 @@
 .btnPrevPage,
 .btnNextPage,
 .pageNumber {
-    padding: 4px 8px;
+    padding: 6px 8px;
     border-radius: 4px;
     border: 1px solid var(--gray_2);
+    min-width: 36px;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
 }
 .btnPrevPage:disabled,
 .btnNextPage:disabled {
@@ -34,4 +43,37 @@
     background: var(--blue_0);
     color: var(--gray_6);
     border-color: var(--blue_0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .pagination {
+        padding: 16px 4px;
+        gap: 2px;
+    }
+    
+    .btnPrevPage,
+    .btnNextPage,
+    .pageNumber {
+        padding: 4px 6px;
+        min-width: 32px;
+        min-height: 32px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pagination {
+        padding: 12px 4px;
+        gap: 2px;
+    }
+    
+    .btnPrevPage,
+    .btnNextPage,
+    .pageNumber {
+        padding: 3px 4px;
+        min-width: 28px;
+        min-height: 28px;
+        font-size: 11px;
+    }
 }
