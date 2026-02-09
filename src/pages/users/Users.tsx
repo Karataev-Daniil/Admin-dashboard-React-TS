@@ -1,11 +1,11 @@
 import { useMemo, useState, useCallback } from 'react'
 import { useOutletContext } from 'react-router-dom';
 import styles from '../../styles/pages/page.module.css'
-import UsersHeader from '../../components/Users/UsersHeader'
-import UsersControls from '../../components/Users/UsersControls'
-import UsersTable from '../../components/Users/UsersTable'
-import UsersPagination from '../../components/Users/UsersPagination'
-import UserEditModal from '../../components/Users/UserEditModal'
+import UsersHeader from '../../components/users/UsersHeader'
+import UsersControls from '../../components/users/UsersControls'
+import UsersTable from '../../components/users/UsersTable'
+import UsersPagination from '../../components/users/UsersPagination'
+import UserEditModal from '../../components/users/UserEditModal'
 import type { RoleControlsProps, StatusControlsProps, SortControlsProps, User } from '../../data/users'
 import type { MainLayoutContext } from '../../layout/MainLayout'
 
@@ -135,3 +135,4 @@ const Users = () => {
 }
 
 export default Users
+
