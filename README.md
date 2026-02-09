@@ -1,58 +1,59 @@
 # ProductDash
 
-**ProductDash** — учебная админ-панель для управления товарами, заказами и пользователями.
-Проект имитирует реальный dashboard с аналитикой, фильтрами, редактированием данных и адаптивной вёрсткой.
+**ProductDash** is a training admin panel for managing products, orders, and users.
+The project imitates a real dashboard with analytics, filters, data editing, and a responsive layout.
 
-Сделан с упором на архитектуру **React**-приложения, типобезопасность и аккуратный UI.
+Built with a focus on **React** app architecture, type safety, and a clean UI.
 
-## Описание
+## Description
 
-Проект создан для практики типичных задач фронтенд-разработчика:
-работа с таблицами, состоянием приложения, маршрутизацией и пользовательским интерфейсом.
+The project was created to practice typical frontend tasks:
+working with tables, application state, routing, and user interfaces.
 
-**Бэкенд не используется** — данные хранятся локально. Это позволяет сфокусироваться на фронтенде, структуре кода и взаимодействии компонентов.
+**No backend is used** � data is stored locally. This lets you focus on the frontend,
+code structure, and component interaction.
 
-## Основные возможности
+## Key features
 
 ### Dashboard
 
-- Карточки с ключевыми метриками
-- Статусы заказов
-- Распределение продаж по категориям
-- Уровень запасов
-- Недавняя активность
+- Cards with key metrics
+- Order statuses
+- Sales distribution by category
+- Inventory level
+- Recent activity
 
-### Товары
+### Products
 
-- Просмотр каталога
-- Фильтрация по категориям, статусу и запасам
-- Редактирование товаров
-- Пагинация
+- Catalog browsing
+- Filtering by category, status, and stock
+- Product editing
+- Pagination
 
-### Заказы
+### Orders
 
-- Список заказов
-- Фильтрация по статусу
-- Изменение статуса заказа
-- Пагинация
+- Orders list
+- Filtering by status
+- Updating order status
+- Pagination
 
-### Пользователи
+### Users
 
-- Список пользователей
-- Фильтрация по роли и статусу
-- Сортировка
-- Редактирование профилей
+- Users list
+- Filtering by role and status
+- Sorting
+- Profile editing
 
-### Интерфейс
+### Interface
 
-- Полностью адаптивный дизайн
-- Отзывчивая навигация
-- Единая система стилей
+- Fully responsive design
+- Responsive navigation
+- Unified style system
 
-## Технологии
+## Technologies
 
-| Технология | Версия |
-|-----------|--------|
+| Technology | Version |
+|-----------|---------|
 | **React** | 18 |
 | **TypeScript** | - |
 | **Vite** | - |
@@ -61,7 +62,7 @@
 | **LocalForage** | - |
 | **ESLint** | - |
 
-## Установка и запуск
+## Installation and run
 
 ```bash
 git clone https://github.com/yourusername/productdash.git
@@ -69,22 +70,22 @@ cd productdash
 npm install
 ```
 
-### Режим разработки
+### Development mode
 
 ```bash
 npm run dev
 ```
 
-Откройте `http://localhost:5173` в браузере.
+Open `http://localhost:5173` in your browser.
 
-## Архитектура
+## Architecture
 
-**Глобальное состояние** реализовано через **React Context API**.
-Данные (товары, заказы, пользователи) сохраняются в локальном хранилище с помощью **LocalForage**.
+**Global state** is implemented via the **React Context API**.
+Data (products, orders, users) is stored in local storage using **LocalForage**.
 
-Проект разбит на функциональные модули, без перегруженных компонентов.
+The project is split into functional modules without overloaded components.
 
-## Типы данных
+## Data types
 
 ### Order
 
@@ -127,15 +128,15 @@ interface User {
 }
 ```
 
-## Цель проекта
+## Project goals
 
-- Практика построения админ-панелей
-- Архитектура **React**-приложений
-- Работа с состоянием и маршрутизацией
-- Типобезопасность с **TypeScript**
-- Инкапсулированные стили и единый UI
+- Practice building admin panels
+- **React** application architecture
+- State management and routing
+- Type safety with **TypeScript**
+- Encapsulated styles and a consistent UI
 
-## Контакты
+## Contacts
 
 **GitHub**: https://github.com/Karataev-Daniil
 
