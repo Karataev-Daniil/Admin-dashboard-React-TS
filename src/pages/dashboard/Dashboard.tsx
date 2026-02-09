@@ -9,9 +9,7 @@ import OrderStatusCard from '../../components/dashboard/analytics-cards/OrderSta
 import SalesByCategoryCard from '../../components/dashboard/analytics-cards/SalesByCategoryCard'
 
 import DashboardMetrics from '../../components/dashboard/DashboardMetrics'
-// import CancelledOrders from '../../components/dashboard/metrics-cards/CancelledOrders'
 import LowStockAlert from '../../components/dashboard/metrics-cards/LowStockAlert'
-// import CompletedOrders from '../../components/dashboard/metrics-cards/CompletedOrders'
 
 const Dashboard = ({
 
@@ -28,9 +26,7 @@ const Dashboard = ({
         <SalesByCategoryCard />
       </DashboardAnalytics>
       <DashboardMetrics>
-        {/* <CancelledOrders /> */}
         <LowStockAlert />
-        {/* <CompletedOrders /> */}
       </DashboardMetrics>
     </div>
   )
