@@ -10,7 +10,7 @@ Built with a focus on **React** app architecture, type safety, and a clean UI.
 The project was created to practice typical frontend tasks:
 working with tables, application state, routing, and user interfaces.
 
-**No backend is used** — data is stored locally. This lets you focus on the frontend,
+**No backend is used** data is stored locally. This lets you focus on the frontend,
 code structure, and component interaction.
 
 ## Key features
