@@ -27,10 +27,14 @@
 .table td {
     padding: 12px;
     text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
 }
 
 .table tr th:first-child {
     width: 32px;
+    max-width: 32px;
 }
 
 .table thead {
@@ -194,6 +198,9 @@
     .table th,
     .table td {
         padding: 10px 8px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 150px;
     }
     
     .actions {
@@ -219,10 +226,14 @@
     .table th,
     .table td {
         padding: 8px 6px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 120px;
     }
     
     .table tr th:first-child {
         width: 24px;
+        max-width: 24px;
     }
     
     .actionBtn {

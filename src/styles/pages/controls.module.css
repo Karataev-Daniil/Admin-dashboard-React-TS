@@ -4,14 +4,14 @@
     justify-content: space-between;
     align-items: center;
     margin: 0 0 12px;
-    flex-wrap: wrap;
     gap: 12px;
 }
 
 .filters {
     display: flex;
     gap: 12px;
-    flex-wrap: wrap;
+    flex-shrink: 1;
+    min-width: 0;
 }
 
 .filter {
@@ -64,16 +64,19 @@
     .controls {
         margin: 0 0 8px;
         gap: 8px;
+        flex-wrap: wrap;
     }
 
     .filters {
         gap: 8px;
+        flex-wrap: wrap;
     }
 
     .filter {
         padding: 4px 6px;
         font-size: 11px;
         min-height: 32px;
+        flex-shrink: 0;
     }
 
     .addButton {
